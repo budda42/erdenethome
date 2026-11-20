@@ -9,7 +9,8 @@
     "lint": "eslint",
     "db:migrate": "node scripts/migrate.mjs",
     "db:create-admin": "node scripts/create-admin.mjs",
-    "import:projects": "node --env-file-if-exists=.env.local scripts/import-projects.mjs"
+    "import:projects": "node --env-file-if-exists=.env.local scripts/import-projects.mjs",
+    "pages:data": "node scripts/build-pages-data.mjs"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

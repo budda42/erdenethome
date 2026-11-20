@@ -58,6 +58,19 @@ npm run build && npm start   # продакшн
 
 > **Анхаарах:** одоогийн файлын хадгалалт (`src/lib/storage.ts`) нь серверийн диск дээр бичдэг. Vercel дээр диск тогтвортой биш тул зураг, гэрээний PDF алдагдана. Нийтэд гаргахаасаа өмнө Vercel Blob эсвэл S3-д шилжүүлэх шаардлагатай.
 
+## 2b. GitHub Pages үзүүлэн сайт (`site/`)
+
+`site/` хавтас нь GitHub Pages дээр ажилладаг энгийн статик сайт (build шаардлагагүй): зарын жагсаалт, шүүлтүүр, газрын зураг, бидний тухай, Facebook холбоос.
+
+- **Хаяг:** https://budda42.github.io/erdenethome/
+- **Тохиргоо:** `site/config.js` — `appUrl`-д Vercel дээрх бүтэн сайтын хаягийг бичвэл зарууд тэндээс шууд (live) ачаална, "Зар оруулах / Нэвтрэх" товч тийшээ шилжинэ. Хоосон бол `site/data/listings.json`-г харуулна.
+- **Зарын өгөгдөл шинэчлэх:** `data/projects-*.json`-г засаад `npm run pages:data`.
+- **Нийтлэх:** `main`-д commit хийсний дараа
+  ```bash
+  git subtree push --prefix site origin gh-pages
+  ```
+  Repo → Settings → Pages: Source = "Deploy from a branch", Branch = `gh-pages` / `(root)`.
+
 ## 3. Аюулгүй байдлын тэмдэглэл
 
 - Нууц үг bcrypt-ээр (12 round) хадгалагдана. Сесс нь httpOnly JWT cookie.
