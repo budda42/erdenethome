@@ -1,36 +1,43 @@
-// Usage: node scripts/build-pages-data.mjs
-// Writes site/data/listings.json for the static GitHub Pages site (site/) from data/projects-*.json.
-// The static site shows this file only when the live app (EH_CONFIG.appUrl) can't be reached.
+// Usage: npm run pages:data
+// Builds site/data/listings.json for the static GitHub Pages site from
+//   - data/fb-listings.json   (ads collected from the Facebook page; edit by hand)
+//   - data/projects-*.json    (project units, e.g. Oyut Residence)
+// Categories: apartment (Орон сууц), house (Хашаа байшин), land (Газар), rent (Түрээс), object (Объект).
 import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { existsSync } from "node:fs";
+
+const CATS = new Set(["apartment", "house", "land", "rent", "object"]);
+const listings = [];
+
+if (existsSync("data/fb-listings.json")) {
+  const { listings: fb } = JSON.parse(await readFile("data/fb-listings.json", "utf8"));
+  for (const l of fb) {
+    if (!CATS.has(l.category)) throw new Error(`${l.id}: ангилал буруу "${l.category}"`);
+    listings.push({ images: [], ...l });
+  }
+}
 
 const { projects } = JSON.parse(await readFile("data/projects-2026-11.json", "utf8"));
-
-const listings = [];
-const showcase = [];
 for (const p of projects) {
-  if (!p.units?.length) {
-    showcase.push({ name: p.name, address: p.address, description: p.description ?? "" });
-    continue;
-  }
-  for (const u of p.units) {
+  for (const u of p.units ?? []) {
     listings.push({
       id: u.ad_number,
-      name: `${p.name} · ${u.rooms} өрөө ${u.area_m2} м²`,
-      project: p.name,
-      address: p.address,
-      district: p.district ?? null,
+      category: "apartment",
+      title: `${p.name} · ${u.rooms} өрөө ${u.area_m2} м²`,
+      location: p.address,
       rooms: u.rooms,
       areaM2: u.area_m2,
       price: u.price,
-      dealType: "sale",
+      images: [],
       latitude: p.latitude ?? null,
       longitude: p.longitude ?? null,
-      coverUrl: null,
       description: p.description ?? "",
     });
   }
 }
 
 await mkdir("site/data", { recursive: true });
-await writeFile("site/data/listings.json", JSON.stringify({ generatedAt: new Date().toISOString(), listings, showcase }, null, 2));
-console.log(`site/data/listings.json: ${listings.length} зар, ${showcase.length} төсөл`);
+await writeFile("site/data/listings.json", JSON.stringify({ generatedAt: new Date().toISOString(), listings }, null, 2));
+const by = {};
+listings.forEach((l) => { by[l.category] = (by[l.category] ?? 0) + 1; });
+console.log(`site/data/listings.json: ${listings.length} зар`, by);

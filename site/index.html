@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>ERDENET HOME — Эрдэнэт хотын байр, орон сууцны зар</title>
-  <meta name="description" content="Эрдэнэт хотын орон сууц, байрны худалдаа, түрээсийн зар. Газрын зураг дээр хайж, шууд холбогдоорой." />
+  <title>ERDENET HOME — Эрдэнэт хотын орон сууц, байшин, газрын зар</title>
+  <meta name="description" content="Эрдэнэт хотын орон сууц, хашаа байшин, газар, түрээс, объектын зар. Шудраад сонгож, шууд залгаарай." />
   <meta property="og:title" content="ERDENET HOME — Эрдэнэт байр" />
-  <meta property="og:description" content="Эрдэнэт хотын орон сууц, байрны зар нэг дор." />
+  <meta property="og:description" content="Орон сууц, хашаа байшин, газар, түрээс, объектын зар нэг дор." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23167653'/><path d='M14 32 32 16l18 16v16H38V36H26v12H14z' fill='white'/></svg>" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="style.css" />
@@ -21,41 +21,52 @@
         <a href="#about">Бидний тухай</a>
         <a href="#contact">Холбоо барих</a>
       </nav>
-      <a class="btn btn-primary js-app" data-path="/my/listings" href="#contact">+ Зар оруулах</a>
+      <button class="btn btn-primary js-post" type="button">+ Зар оруулах</button>
     </div>
   </header>
 
   <main>
     <section class="hero">
       <div class="wrap">
-        <p class="eyebrow">ЭРДЭНЭТ · БАЙР · ЗАР · ГЭРЭЭ</p>
+        <p class="eyebrow">ЭРДЭНЭТ · БАЙР · БАЙШИН · ГАЗАР</p>
         <h1>Танд тохирох байраа<br />нэг дороос олоорой.</h1>
-        <p class="lead">Эрдэнэт хотын орон сууцны худалдаа, түрээсийн шалгагдсан зар. Газрын зураг дээр хайж, шууд холбогдоорой.</p>
+        <p class="lead">Эрдэнэт хотын орон сууц, хашаа байшин, газар, түрээс, объектын зар. Шудраад сонгож, шууд залгаарай.</p>
         <form class="search" id="search">
-          <input name="q" placeholder="Байрны нэр, хаяг" />
+          <input name="q" placeholder="Хаяг, байршил, түлхүүр үг" />
           <select name="rooms">
             <option value="">Өрөө</option>
             <option value="1">1 өрөө</option><option value="2">2 өрөө</option>
             <option value="3">3 өрөө</option><option value="4">4+ өрөө</option>
           </select>
-          <select name="deal">
-            <option value="">Худалдаа / Түрээс</option>
-            <option value="sale">Худалдаа</option><option value="rent">Түрээс</option>
-          </select>
           <input name="max" type="number" min="0" placeholder="Дээд үнэ ₮" />
           <button class="btn btn-primary">Хайх</button>
         </form>
+        <div class="chips" id="cats" role="tablist" aria-label="Ангилал"></div>
         <div class="hero-stats" id="stats"></div>
       </div>
     </section>
 
     <section id="listings" class="wrap section">
       <div class="section-head">
-        <h2>Зарууд</h2>
-        <span class="muted" id="count"></span>
+        <h2>Зарууд <span class="muted small" id="count"></span></h2>
+        <div class="toggle" role="group" aria-label="Харах хэлбэр">
+          <button type="button" data-view="swipe" class="on">🃏 Шудрах</button>
+          <button type="button" data-view="grid">▦ Жагсаалт</button>
+          <button type="button" data-view="saved">❤️ <span id="saved-n">0</span></button>
+        </div>
       </div>
-      <div class="grid" id="grid"><p class="muted">Ачаалж байна…</p></div>
-      <div id="showcase"></div>
+
+      <div id="swipe-view">
+        <div class="deck" id="deck"></div>
+        <div class="deck-actions">
+          <button type="button" class="round nope" id="btn-nope" aria-label="Алгасах">✕</button>
+          <button type="button" class="round info" id="btn-info" aria-label="Дэлгэрэнгүй">i</button>
+          <button type="button" class="round like" id="btn-like" aria-label="Хадгалах">❤</button>
+        </div>
+        <p class="hint muted">Баруун тийш шудрах = хадгалах ❤️ · Зүүн тийш = алгасах · Зураг дээр товшиж дараагийн зургийг харна</p>
+      </div>
+      <div id="grid-view" hidden><div class="grid" id="grid"></div></div>
+      <div id="saved-view" hidden><div class="grid" id="saved-grid"></div></div>
     </section>
 
     <section id="map" class="wrap section">
@@ -71,55 +82,58 @@
         <h2 class="center">Яагаад ERDENET HOME гэж?</h2>
         <p class="center muted">Байр хайхад цаг, мөнгө, мэдрэлээ хэмнэ.</p>
         <div class="features">
-          <div class="card feature"><span>🗺️</span><h3>Газрын зураг дээр хайх</h3><p>Байр бүрийн байршлыг харж, ажил, сургуульдаа ойрыг нь сонгоно.</p></div>
-          <div class="card feature"><span>✅</span><h3>Шалгагдсан зар</h3><p>Зар бүрийг манай ажилтан хянаж баталгаажуулсны дараа нийтэлдэг.</p></div>
-          <div class="card feature"><span>💬</span><h3>Шууд харилцаа</h3><p>Сонирхсон байрныхаа талаар хариуцсан ажилтантай шууд ярилцана.</p></div>
-          <div class="card feature"><span>📝</span><h3>Онлайн гэрээ</h3><p>Гэрээний төслийг онлайнаар хүлээн авч, нэг товчоор баталгаажуулна.</p></div>
-          <div class="card feature"><span>👆</span><h3>Шудраад сонгох</h3><p>Таалагдсан байраа шудраад хадгалж, богино жагсаалт гаргана.</p></div>
-          <div class="card feature"><span>🏠</span><h3>Үнэгүй зар оруулах</h3><p>Байраа зарах, түрээслэх бол хэдхэн алхмаар байршилтай нь оруулна.</p></div>
+          <div class="card feature"><span>👆</span><h3>Шудраад сонгох</h3><p>Таалагдсан байраа баруун тийш шудраад хадгалж, хэдхэн минутад богино жагсаалттай болно.</p></div>
+          <div class="card feature"><span>🏘️</span><h3>Бүх төрлийн зар</h3><p>Орон сууц, хашаа байшин, газар, түрээс, объект — бүгд нэг дор, ангиллаар шүүнэ.</p></div>
+          <div class="card feature"><span>📞</span><h3>Шууд холбогдох</h3><p>Зар бүр дээрээс нэг товчоор залгах эсвэл Messenger-ээр бичнэ.</p></div>
+          <div class="card feature"><span>✅</span><h3>Шалгагдсан мэдээлэл</h3><p>Зарыг манай мэргэжилтэн хянаж, бодит мэдээллийг л нийтэлдэг.</p></div>
+          <div class="card feature"><span>🗺️</span><h3>Газрын зураг</h3><p>Байршилтай зарыг газрын зураг дээр харж, ойр орчныг нь сонгоно.</p></div>
+          <div class="card feature"><span>🏠</span><h3>Үнэгүй зар оруулах</h3><p>Байр, байшин, газраа зарах бол залгаад эсвэл Messenger-ээр мэдээллээ илгээгээрэй.</p></div>
         </div>
 
         <div class="card steps">
           <h2 class="center">Хэрхэн ажилладаг вэ?</h2>
           <ol>
-            <li><b>1</b><h3>Хайх</h3><p>Өрөө, үнээр шүүх эсвэл газрын зургаас сонгоно.</p></li>
-            <li><b>2</b><h3>Холбогдох</h3><p>Ажилтантай холбогдож, байраа үзэх цагаа товлоно.</p></li>
-            <li><b>3</b><h3>Гэрээ байгуулах</h3><p>Гэрээгээ онлайнаар хүлээн авч баталгаажуулна.</p></li>
+            <li><b>1</b><h3>Шудрах</h3><p>Ангиллаа сонгоод зарыг шударч, таалагдсанаа хадгална.</p></li>
+            <li><b>2</b><h3>Холбогдох</h3><p>Залгах эсвэл Messenger-ээр бичиж, үзэх цагаа товлоно.</p></li>
+            <li><b>3</b><h3>Гэрээ байгуулах</h3><p>Мэргэжилтний тусламжтай найдвартай гэрээ хийнэ.</p></li>
           </ol>
         </div>
 
         <h2>Түгээмэл асуулт</h2>
-        <details class="card faq"><summary>Сайт ашиглах төлбөртэй юу?</summary><p>Байр хайх, хүсэлт илгээх, зар оруулах нь үнэгүй.</p></details>
-        <details class="card faq"><summary>Миний оруулсан зар хэзээ нийтлэгдэх вэ?</summary><p>Манай ажилтан хянаж баталгаажуулмагц нийтлэгдэнэ.</p></details>
-        <details class="card faq"><summary>Байрыг очиж үзэж болох уу?</summary><p>Тийм. Бидэнтэй холбогдож үзэх цагаа товлоорой.</p></details>
+        <details class="card faq"><summary>Зар оруулахад төлбөртэй юу?</summary><p>Үгүй. Залгах эсвэл Messenger-ээр байрныхаа мэдээлэл, зургийг илгээхэд бид зарыг тань оруулна.</p></details>
+        <details class="card faq"><summary>Байрыг очиж үзэж болох уу?</summary><p>Тийм. Зар дээрх "Залгах" товчоор холбогдож үзэх цагаа товлоорой.</p></details>
+        <details class="card faq"><summary>Хадгалсан зар маань хаана байх вэ?</summary><p>"❤️" товчоор хадгалсан зар энэ төхөөрөмж дээр хадгалагдаж, "Зарууд" хэсгийн ❤️ таб дээр харагдана.</p></details>
       </div>
     </section>
 
     <section id="contact" class="wrap section">
       <div class="card cta">
         <h2>Бидэнтэй холбогдох</h2>
-        <p class="muted">Шинэ зар, мэдээллийг Facebook хуудсаас маань хамгийн түрүүнд аваарай.</p>
-        <div class="cta-buttons">
-          <a class="btn btn-fb js-fb" target="_blank" rel="noopener noreferrer" href="#">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
-            Facebook-ээр холбогдох
-          </a>
-          <a class="btn btn-ghost js-phone" hidden href="#"></a>
-          <a class="btn btn-ghost js-email" hidden href="#"></a>
-          <a class="btn btn-primary js-app" data-path="/register" hidden href="#">Бүртгүүлэх / Нэвтрэх</a>
-        </div>
+        <p class="muted">Зар оруулах, байр асуух бол шууд залгаарай эсвэл Messenger-ээр бичээрэй.</p>
+        <div class="cta-buttons js-contact"></div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="wrap footer-in">
-      <span>© <span id="year"></span> ERDENET HOME · Эрдэнэт хотын байрны зар</span>
+      <span>© <span id="year"></span> ERDENET HOME · Эрдэнэт хотын байр, байшин, газрын зар</span>
       <a class="js-fb" target="_blank" rel="noopener noreferrer" href="#">Facebook</a>
     </div>
   </footer>
 
+  <!-- mobile sticky contact bar -->
+  <div class="mobile-bar js-contact-mini"></div>
+
   <dialog id="detail" class="detail"></dialog>
+  <dialog id="post" class="detail post">
+    <button class="close" type="button" aria-label="Хаах">×</button>
+    <div class="detail-body">
+      <h2>Зар оруулах</h2>
+      <p class="muted">Байр, байшин, газраа зарах эсвэл түрээслүүлэх бол бидэнтэй шууд холбогдоорой. Хаяг, үнэ, талбай, зургаа илгээхэд бид зарыг тань оруулна.</p>
+      <div class="post-buttons js-contact-big"></div>
+    </div>
+  </dialog>
 
   <script src="config.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
