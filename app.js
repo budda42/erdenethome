@@ -57,6 +57,10 @@
     (APP ? '<a class="btn btn-primary" href="' + esc(APP + "/register") + '">Бүртгүүлэх / Нэвтрэх</a>' : "");
   $(".js-contact-mini").innerHTML = contactButtons(null, false);
   $(".js-contact-big").innerHTML = contactButtons(null, true);
+  // Top-right corner: the phone number itself, tapping it calls (used for posting ads).
+  var topPhone = $(".js-top-phone");
+  if (cfg.phone) { topPhone.href = tel(cfg.phone); topPhone.querySelector("span").textContent = cfg.phone; }
+  else topPhone.hidden = true;
   var postDlg = $("#post");
   document.querySelectorAll(".js-post").forEach(function (b) { b.onclick = function () { postDlg.showModal(); }; });
   postDlg.querySelector(".close").onclick = function () { postDlg.close(); };
@@ -123,8 +127,9 @@
     $("#stats").innerHTML = all.length
       ? '<span class="stat"><b>' + all.length + "</b>идэвхтэй зар</span>" +
         (prices.length ? '<span class="stat"><b>' + esc(short(Math.min.apply(null, prices))) + "</b>-с эхэлнэ</span>" : "") +
-        '<span class="stat">📞 <a href="' + esc(tel(cfg.phone)) + '"><b>' + esc(cfg.phone) + "</b></a></span>"
+        '<button type="button" class="stat stat-btn js-post">+ Зар оруулах</button>'
       : "";
+    $("#stats .js-post") && ($("#stats .js-post").onclick = function () { postDlg.showModal(); });
   }
 
   // ---------- grid ----------

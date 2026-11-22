@@ -167,3 +167,7 @@ h2 { font-size: 1.6rem; }
   .swipe .over h3 { font-size: 1.05rem; }
   .swipe .over .p { font-size: 1.25rem; }
 }
+
+.btn-phone { font-size: 15px; font-weight: 800; letter-spacing: .02em; }
+.stat-btn { cursor: pointer; font: 600 14px/1.55 inherit; color: var(--brand); }
+.stat-btn:hover { border-color: var(--brand); }
