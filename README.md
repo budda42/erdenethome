@@ -64,7 +64,7 @@ npm run build && npm start   # продакшн
 
 - **Хаяг:** https://budda42.github.io/erdenethome/
 - **Тохиргоо:** `site/config.js` — `appUrl`-д Vercel дээрх бүтэн сайтын хаягийг бичвэл зарууд тэндээс шууд (live) ачаална, "Зар оруулах / Нэвтрэх" товч тийшээ шилжинэ. Хоосон бол `site/data/listings.json`-г харуулна.
-- **Зарын өгөгдөл шинэчлэх:** `data/projects-*.json`-г засаад `npm run pages:data`.
+- **Зарын өгөгдөл шинэчлэх:** `data/fb-listings.json`-г засаад `npm run pages:data`.
 - **Байршил тэмдэглэх:** https://budda42.github.io/erdenethome/location.html — зар сонгоод газрын зураг дээр дарж "GitHub-д хадгалах". Байршил `site/data/locations.json`-д хадгалагдана.
 - **Нийтлэх:** `main` салбарын `site/` хавтсанд өөрчлөлт орох бүрт `.github/workflows/pages.yml` автоматаар нийтэлнэ (Settings → Pages → Source = "GitHub Actions").
 
