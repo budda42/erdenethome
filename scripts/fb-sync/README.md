@@ -1,4 +1,4 @@
-# Facebook → сайт автомат sync
+# Facebook → BAIRDER сайт автомат sync
 
 Отгон Багана Facebook профайлд (https://www.facebook.com/profile.php?id=61593044292253) шинээр
 оруулсан зарыг GitHub Pages сайт руу (`data/fb-listings.json` + `site/img/fb/`) нэмнэ.

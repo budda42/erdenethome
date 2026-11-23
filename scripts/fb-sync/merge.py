@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Facebook → ERDENET HOME sync, repository part.
+"""Facebook → BAIRDER (Pages site) sync, repository part.
 
   python3 scripts/fb-sync/merge.py plan META_FILE
       Reads the saved __ehMeta() result and prints the keys of the posts that are not on the

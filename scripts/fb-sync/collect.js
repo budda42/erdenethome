@@ -1,4 +1,4 @@
-// Facebook → ERDENET HOME sync, browser part.
+// Facebook → BAIRDER (Pages site) sync, browser part.
 // Run inside the Claude built-in browser on https://www.facebook.com/profile.php?id=61593044292253
 // while signed in to Facebook. Paste this whole file once (javascript_exec), then:
 //

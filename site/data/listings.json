@@ -1,6 +1,56 @@
 {
-  "generatedAt": "2026-11-23T09:12:45.091Z",
+  "generatedAt": "2026-11-23T23:38:01.750Z",
   "listings": [
+    {
+      "images": [
+        "img/fb/fb-3fc9ef75/1.jpg",
+        "img/fb/fb-3fc9ef75/2.jpg",
+        "img/fb/fb-3fc9ef75/3.jpg",
+        "img/fb/fb-3fc9ef75/4.jpg",
+        "img/fb/fb-3fc9ef75/5.jpg"
+      ],
+      "id": "fb-3fc9ef75",
+      "category": "apartment",
+      "title": "Амарида апартмент 2 өрөө",
+      "location": null,
+      "rooms": 2,
+      "areaM2": 59.46,
+      "landM2": null,
+      "floor": "12/3",
+      "price": null,
+      "priceText": null,
+      "phone": "9952-8028",
+      "description": "АМАРИДА АПАРТМЕНТ #2өрөө #ХУДАЛДАНА\n59.46мкв | 12/3 давхарт\nХарууц: баруун болон хойшоо харсан",
+      "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02abxwQKY5EmLyJKBbUMgKVzv4YzjxTETZ9ifo9qmPn1kzDX85ZhEiKkthPrXv7ksul&id=61593044292253",
+      "fbPostId": "122132289417434809",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "images": [
+        "img/fb/fb-44aa0d2d/1.jpg",
+        "img/fb/fb-44aa0d2d/2.jpg",
+        "img/fb/fb-44aa0d2d/3.jpg",
+        "img/fb/fb-44aa0d2d/4.jpg",
+        "img/fb/fb-44aa0d2d/5.jpg"
+      ],
+      "id": "fb-44aa0d2d",
+      "category": "apartment",
+      "title": "Саруул хотхон 2 өрөө",
+      "location": null,
+      "rooms": 2,
+      "areaM2": 40.5,
+      "landM2": null,
+      "floor": "5/2",
+      "price": null,
+      "priceText": null,
+      "phone": "9952-8028",
+      "description": "САРУУЛ ХОТХОН #2өрөөбайр #ХУДАЛДАНА\n40.5мкв | 5/2 давхарт\nХарууц: Зүүн харсан",
+      "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0ayoqS5PALuWNvtBtBH82Ve466B8R6ZbDA6Nkp1bsmhaoW9jcCZXpncTbmnddfmkTl&id=61593044292253",
+      "fbPostId": "122132222133434809",
+      "latitude": null,
+      "longitude": null
+    },
     {
       "images": [
         "img/fb/fb-d8dcd937/1.jpg",

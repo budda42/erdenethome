@@ -2,7 +2,6 @@
   "use strict";
   var cfg = window.EH_CONFIG || {};
   var APP = (cfg.appUrl || "").replace(/\/+$/, "");
-  var CENTER = [49.0333, 104.05]; // Erdenet
 
   var CATS = [
     { id: "", label: "Бүгд", icon: "✨" },
@@ -18,7 +17,6 @@
     all: [], live: false, view: "swipe", cat: "", filter: { q: "", rooms: "", max: "" },
     queue: [], pos: 0, saved: loadSaved(),
   };
-  var map, layer;
 
   // ---------- helpers ----------
   function esc(v) {
@@ -110,11 +108,16 @@
   }
 
   // ---------- filtering ----------
-  function matches(i, ignoreCat) {
+  var ROOMS = [
+    { id: "", label: "Бүх өрөө" }, { id: "1", label: "1 өрөө" }, { id: "2", label: "2 өрөө" },
+    { id: "3", label: "3 өрөө" }, { id: "4", label: "4+ өрөө" },
+  ];
+  function roomsMatch(i, r) { return !r || (r === "4" ? (i.rooms || 0) >= 4 : String(i.rooms) === r); }
+  function matches(i, ignoreCat, ignoreRooms) {
     var f = state.filter, q = f.q.trim().toLowerCase();
     if (!ignoreCat && state.cat && i.category !== state.cat) return false;
     if (q && (i.title + " " + (i.location || "") + " " + (i.description || "")).toLowerCase().indexOf(q) < 0) return false;
-    if (f.rooms && (f.rooms === "4" ? (i.rooms || 0) < 4 : String(i.rooms) !== f.rooms)) return false;
+    if (!ignoreRooms && !roomsMatch(i, f.rooms)) return false;
     if (f.max && i.price && i.price > Number(f.max)) return false;
     return true;
   }
@@ -122,7 +125,7 @@
 
   function renderCats() {
     $("#cats").innerHTML = CATS.map(function (c) {
-      var n = state.all.filter(function (i) { return (!c.id || i.category === c.id) && matches(i, true); }).length;
+      var n = state.all.filter(function (i) { return (!c.id || i.category === c.id) && matches(i, true, true); }).length;
       return '<button type="button" role="tab" class="chip' + (state.cat === c.id ? " on" : "") + '" data-cat="' + c.id + '">' +
         c.icon + " " + esc(c.label) + '<span class="n">' + n + "</span></button>";
     }).join("");
@@ -130,6 +133,28 @@
   $("#cats").addEventListener("click", function (e) {
     var b = e.target.closest(".chip"); if (!b) return;
     state.cat = b.dataset.cat; refresh(true);
+    document.getElementById("listings").scrollIntoView();
+  });
+
+  // Room-count chips, counted from the rooms written in each post, within the chosen category.
+  function renderRooms() {
+    var pool = state.all.filter(function (i) { return matches(i, false, true); });
+    var withRooms = pool.filter(function (i) { return i.rooms; }).length;
+    var box = $("#rooms");
+    box.hidden = !withRooms;
+    if (!withRooms) { state.filter.rooms = ""; box.innerHTML = ""; return; }
+    // A room filter with no ads in this category would leave an empty list with no visible way out.
+    if (state.filter.rooms && !pool.some(function (i) { return roomsMatch(i, state.filter.rooms); })) state.filter.rooms = "";
+    box.innerHTML = '<span class="chips-label">🛏️ Өрөө:</span>' + ROOMS.map(function (r) {
+      var n = pool.filter(function (i) { return roomsMatch(i, r.id); }).length;
+      if (r.id && !n) return "";
+      return '<button type="button" role="tab" class="chip' + (state.filter.rooms === r.id ? " on" : "") + '" data-rooms="' + r.id + '">' +
+        esc(r.label) + '<span class="n">' + n + "</span></button>";
+    }).join("");
+  }
+  $("#rooms").addEventListener("click", function (e) {
+    var b = e.target.closest(".chip"); if (!b) return;
+    state.filter.rooms = b.dataset.rooms; refresh(true);
     document.getElementById("listings").scrollIntoView();
   });
 
@@ -291,37 +316,13 @@
   document.querySelectorAll(".toggle button").forEach(function (b) { b.onclick = function () { setView(b.dataset.view); }; });
 
   function refresh(resetDeck) {
+    renderRooms();
     var list = filtered();
     $("#count").textContent = list.length + " зар";
     renderCats();
     renderGrid($("#grid"), list, "Шүүлтүүрт тохирох зар олдсонгүй.");
     if (resetDeck) { state.queue = list; state.pos = 0; renderDeck(); }
     if (state.view === "saved") setView("saved");
-    renderMap(list);
-  }
-
-  // ---------- map ----------
-  function renderMap(list) {
-    if (!window.L) return;
-    if (!map) {
-      map = L.map("leaflet", { scrollWheelZoom: false }).setView(CENTER, 13);
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }).addTo(map);
-      layer = L.layerGroup().addTo(map);
-    }
-    layer.clearLayers();
-    var pts = [];
-    list.forEach(function (i) {
-      if (i.latitude == null || i.longitude == null) return;
-      var ll = [i.latitude, i.longitude];
-      pts.push(ll);
-      L.marker(ll, { icon: L.divIcon({ className: "", html: '<div class="pin">' + esc(i.price ? short(i.price) : CAT[i.category].label) + "</div>", iconSize: [0, 0] }) })
-        .on("click", function () { openDetail(i.id); }).addTo(layer);
-    });
-    if (pts.length > 1) map.fitBounds(pts, { padding: [40, 40], maxZoom: 15 });
-    else if (pts.length === 1) map.setView(pts[0], 15);
-    $("#map-note").textContent = pts.length ? pts.length + " зар газрын зураг дээр" : "Байршил тэмдэглэсэн зар одоогоор алга";
   }
 
   // ---------- detail dialog ----------
@@ -385,7 +386,7 @@
   $("#search").addEventListener("submit", function (e) {
     e.preventDefault();
     var fd = new FormData(e.target);
-    state.filter = { q: fd.get("q") || "", rooms: fd.get("rooms") || "", max: fd.get("max") || "" };
+    state.filter = { q: fd.get("q") || "", rooms: state.filter.rooms, max: fd.get("max") || "" };
     refresh(true);
     document.getElementById("listings").scrollIntoView();
   });

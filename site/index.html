@@ -3,22 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>ERDENET HOME — Эрдэнэт хотын орон сууц, байшин, газрын зар</title>
+  <title>BAIRDER — Эрдэнэт хотын орон сууц, байшин, газрын зар</title>
   <meta name="description" content="Эрдэнэт хотын орон сууц, хашаа байшин, газар, түрээс, объектын зар. Шудраад сонгож, шууд залгаарай." />
-  <meta property="og:title" content="ERDENET HOME — Эрдэнэт байр" />
+  <meta property="og:title" content="BAIRDER — Эрдэнэт хотын байрны зар" />
   <meta property="og:description" content="Орон сууц, хашаа байшин, газар, түрээс, объектын зар нэг дор." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23167653'/><path d='M14 32 32 16l18 16v16H38V36H26v12H14z' fill='white'/></svg>" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="topbar">
     <div class="wrap topbar-in">
-      <a href="#" class="logo"><span>ERDENET</span> HOME</a>
+      <a href="#" class="logo"><span>BAIR</span>DER</a>
       <nav class="nav">
         <a href="#listings">Зарууд</a>
-        <a href="#map">Газрын зураг</a>
-        <a href="#about">Бидний тухай</a>
         <a href="#contact">Холбоо барих</a>
       </nav>
       <a class="btn btn-primary btn-phone js-top-phone" href="#" title="Зар оруулах, асуух бол залгана уу">📞 <span></span></a>
@@ -33,15 +30,11 @@
         <p class="lead">Эрдэнэт хотын орон сууц, хашаа байшин, газар, түрээс, объектын зар. Шудраад сонгож, шууд залгаарай.</p>
         <form class="search" id="search">
           <input name="q" placeholder="Хаяг, байршил, түлхүүр үг" />
-          <select name="rooms">
-            <option value="">Өрөө</option>
-            <option value="1">1 өрөө</option><option value="2">2 өрөө</option>
-            <option value="3">3 өрөө</option><option value="4">4+ өрөө</option>
-          </select>
           <input name="max" type="number" min="0" placeholder="Дээд үнэ ₮" />
           <button class="btn btn-primary">Хайх</button>
         </form>
         <div class="chips" id="cats" role="tablist" aria-label="Ангилал"></div>
+        <div class="chips rooms" id="rooms" role="tablist" aria-label="Өрөөний тоо"></div>
         <div class="hero-stats" id="stats"></div>
       </div>
     </section>
@@ -69,43 +62,6 @@
       <div id="saved-view" hidden><div class="grid" id="saved-grid"></div></div>
     </section>
 
-    <section id="map" class="wrap section">
-      <div class="section-head">
-        <h2>Газрын зураг</h2>
-        <span class="muted"><span id="map-note"></span> · <a href="location.html" class="link">📍 Байршил тэмдэглэх</a></span>
-      </div>
-      <div class="card map-card"><div id="leaflet"></div></div>
-    </section>
-
-    <section id="about" class="section about">
-      <div class="wrap">
-        <h2 class="center">Яагаад ERDENET HOME гэж?</h2>
-        <p class="center muted">Байр хайхад цаг, мөнгө, мэдрэлээ хэмнэ.</p>
-        <div class="features">
-          <div class="card feature"><span>👆</span><h3>Шудраад сонгох</h3><p>Таалагдсан байраа баруун тийш шудраад хадгалж, хэдхэн минутад богино жагсаалттай болно.</p></div>
-          <div class="card feature"><span>🏘️</span><h3>Бүх төрлийн зар</h3><p>Орон сууц, хашаа байшин, газар, түрээс, объект — бүгд нэг дор, ангиллаар шүүнэ.</p></div>
-          <div class="card feature"><span>📞</span><h3>Шууд холбогдох</h3><p>Зар бүр дээрээс нэг товчоор залгах эсвэл Messenger-ээр бичнэ.</p></div>
-          <div class="card feature"><span>✅</span><h3>Шалгагдсан мэдээлэл</h3><p>Зарыг манай мэргэжилтэн хянаж, бодит мэдээллийг л нийтэлдэг.</p></div>
-          <div class="card feature"><span>🗺️</span><h3>Газрын зураг</h3><p>Байршилтай зарыг газрын зураг дээр харж, ойр орчныг нь сонгоно.</p></div>
-          <div class="card feature"><span>🏠</span><h3>Үнэгүй зар оруулах</h3><p>Байр, байшин, газраа зарах бол залгаад эсвэл Messenger-ээр мэдээллээ илгээгээрэй.</p></div>
-        </div>
-
-        <div class="card steps">
-          <h2 class="center">Хэрхэн ажилладаг вэ?</h2>
-          <ol>
-            <li><b>1</b><h3>Шудрах</h3><p>Ангиллаа сонгоод зарыг шударч, таалагдсанаа хадгална.</p></li>
-            <li><b>2</b><h3>Холбогдох</h3><p>Залгах эсвэл Messenger-ээр бичиж, үзэх цагаа товлоно.</p></li>
-            <li><b>3</b><h3>Гэрээ байгуулах</h3><p>Мэргэжилтний тусламжтай найдвартай гэрээ хийнэ.</p></li>
-          </ol>
-        </div>
-
-        <h2>Түгээмэл асуулт</h2>
-        <details class="card faq"><summary>Зар оруулахад төлбөртэй юу?</summary><p>Үгүй. Залгах эсвэл Messenger-ээр байрныхаа мэдээлэл, зургийг илгээхэд бид зарыг тань оруулна.</p></details>
-        <details class="card faq"><summary>Байрыг очиж үзэж болох уу?</summary><p>Тийм. Зар дээрх "Залгах" товчоор холбогдож үзэх цагаа товлоорой.</p></details>
-        <details class="card faq"><summary>Хадгалсан зар маань хаана байх вэ?</summary><p>"❤️" товчоор хадгалсан зар энэ төхөөрөмж дээр хадгалагдаж, "Зарууд" хэсгийн ❤️ таб дээр харагдана.</p></details>
-      </div>
-    </section>
-
     <section id="contact" class="wrap section">
       <div class="card cta">
         <h2>Бидэнтэй холбогдох</h2>
@@ -117,8 +73,8 @@
 
   <footer class="footer">
     <div class="wrap footer-in">
-      <span>© <span id="year"></span> ERDENET HOME · Эрдэнэт хотын байр, байшин, газрын зар</span>
-      <span><a href="location.html">📍 Байршил тэмдэглэх</a> · <a class="js-fb" target="_blank" rel="noopener noreferrer" href="#">Facebook</a></span>
+      <span>© <span id="year"></span> BAIRDER · Эрдэнэт хотын байр, байшин, газрын зар</span>
+      <a class="js-fb" target="_blank" rel="noopener noreferrer" href="#">Facebook</a>
     </div>
   </footer>
 
@@ -136,7 +92,6 @@
   </dialog>
 
   <script src="config.js"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
