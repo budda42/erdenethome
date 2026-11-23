@@ -30,6 +30,18 @@
         <p class="lead">Эрдэнэт хотын орон сууц, хашаа байшин, газар, түрээс, объектын зар. Шудраад сонгож, шууд залгаарай.</p>
         <form class="search" id="search">
           <input name="q" placeholder="Хаяг, байршил, түлхүүр үг" />
+          <label class="field"><span>Төрөл</span>
+            <select name="cat" id="f-cat">
+              <option value="">Бүх төрөл</option>
+              <option value="apartment">Орон сууц</option><option value="house">Хашаа байшин</option>
+              <option value="land">Газар</option><option value="rent">Түрээс</option><option value="object">Объект</option>
+            </select></label>
+          <label class="field"><span>Өрөө</span>
+            <select name="rooms" id="f-rooms">
+              <option value="">Бүх өрөө</option>
+              <option value="1">1 өрөө</option><option value="2">2 өрөө</option>
+              <option value="3">3 өрөө</option><option value="4">4+ өрөө</option>
+            </select></label>
           <input name="max" type="number" min="0" placeholder="Дээд үнэ ₮" />
           <button class="btn btn-primary">Хайх</button>
         </form>

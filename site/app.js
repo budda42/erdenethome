@@ -4,7 +4,7 @@
   var APP = (cfg.appUrl || "").replace(/\/+$/, "");
 
   var CATS = [
-    { id: "", label: "Бүгд", icon: "✨" },
+    { id: "", label: "Бүх төрөл", icon: "✨" },
     { id: "apartment", label: "Орон сууц", icon: "🏢" },
     { id: "house", label: "Хашаа байшин", icon: "🏡" },
     { id: "land", label: "Газар", icon: "🌄" },
@@ -124,7 +124,7 @@
   function filtered() { return state.all.filter(function (i) { return matches(i, false); }); }
 
   function renderCats() {
-    $("#cats").innerHTML = CATS.map(function (c) {
+    $("#cats").innerHTML = '<span class="chips-label">🏠 Төрөл:</span>' + CATS.map(function (c) {
       var n = state.all.filter(function (i) { return (!c.id || i.category === c.id) && matches(i, true, true); }).length;
       return '<button type="button" role="tab" class="chip' + (state.cat === c.id ? " on" : "") + '" data-cat="' + c.id + '">' +
         c.icon + " " + esc(c.label) + '<span class="n">' + n + "</span></button>";
@@ -317,6 +317,8 @@
 
   function refresh(resetDeck) {
     renderRooms();
+    $("#f-cat").value = state.cat;
+    $("#f-rooms").value = state.filter.rooms;
     var list = filtered();
     $("#count").textContent = list.length + " зар";
     renderCats();
@@ -383,10 +385,17 @@
   }
 
   // ---------- search ----------
+  ["#f-cat", "#f-rooms"].forEach(function (sel) {
+    $(sel).addEventListener("change", function () {
+      if (sel === "#f-cat") state.cat = this.value; else state.filter.rooms = this.value;
+      refresh(true);
+    });
+  });
   $("#search").addEventListener("submit", function (e) {
     e.preventDefault();
     var fd = new FormData(e.target);
-    state.filter = { q: fd.get("q") || "", rooms: state.filter.rooms, max: fd.get("max") || "" };
+    state.cat = fd.get("cat") || "";
+    state.filter = { q: fd.get("q") || "", rooms: fd.get("rooms") || "", max: fd.get("max") || "" };
     refresh(true);
     document.getElementById("listings").scrollIntoView();
   });
