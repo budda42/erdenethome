@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Facebook → ERDENET HOME sync, repository part.
 
-  python3 scripts/fb-sync/merge.py known
-      Prints the story ids already in data/fb-listings.json as a JSON array
-      (pass it to __ehNew() in the browser).
+  python3 scripts/fb-sync/merge.py plan META_FILE
+      Reads the saved __ehMeta() result and prints the keys of the posts that are not on the
+      site yet as a JSON array (pass it to __ehQueue() in the browser), plus a short summary.
 
   python3 scripts/fb-sync/merge.py add RESULT_FILE [RESULT_FILE ...]
       Reads the saved browser tool results (the __ehMeta() file and every __ehNext() file),
@@ -20,6 +20,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 DATA = os.path.join(ROOT, "data", "fb-listings.json")
 IMG = os.path.join(ROOT, "site", "img", "fb")
 PHONE = "9952-8028"
+AD_WORDS = r"ХУДАЛДАНА|ЗАРНА|ТҮРЭЭС|өрөө|мкв|м²|м2|\bга\b|газар|байшин|объект|оффис|агуулах"
 
 
 def story_id(link):
@@ -43,7 +44,7 @@ def clean(t):
     out = []
     for line in t.split("\n"):
         line = re.sub(r"[ \t]+", " ", line).strip(" |")
-        if not line or re.fullmatch(r"[\d\-\.\s|]*" + PHONE + r"[\.\s|]*", line):
+        if len(line) <= 1 or re.fullmatch(r"[\d\-\.\s|]*" + PHONE + r"[\.\s|]*", line):
             continue
         if out and out[-1] == line:
             continue
@@ -124,9 +125,39 @@ def parse(text):
 
 
 # ---------- commands ----------
-def known():
+def sig(text):
+    return re.sub(r"\W", "", clean(text))[:80]
+
+
+def existing():
     d = json.load(open(DATA, encoding="utf-8"))
-    print(json.dumps([story_id(l.get("source")) for l in d["listings"] if story_id(l.get("source"))]))
+    pids = {l.get("fbPostId") for l in d["listings"] if l.get("fbPostId")}
+    sigs = {re.sub(r"\W", "", l.get("description", ""))[:80] for l in d["listings"]}
+    return d, pids, sigs
+
+
+def fresh(meta):
+    """Posts that are not on the site yet. Stable post id first, then the text (pfbid ids change)."""
+    _, pids, sigs = existing()
+    out, seen = [], set()
+    for m in meta:
+        s = sig(m.get("text", ""))
+        if len(s) < 12 or (m.get("pid") and m["pid"] in pids) or s in sigs or s in seen:
+            continue
+        # Only real ads: promo/news posts ("Шуурхай мэдээ …") carry none of these words.
+        if not re.search(AD_WORDS, m.get("text", ""), re.I):
+            continue
+        seen.add(s)
+        out.append(m)
+    return out
+
+
+def plan(path):
+    meta = load_result(path)["meta"]
+    new = fresh(meta)
+    print(json.dumps([m["k"] for m in new]))
+    print(json.dumps({"scanned": len(meta), "new": len(new),
+                      "titles": [parse(m["text"])["title"] for m in new]}, ensure_ascii=False), file=sys.stderr)
 
 
 def add(paths):
@@ -139,18 +170,13 @@ def add(paths):
             if it.get("b"):
                 photos[(it["k"], it["n"])] = it["b"]
     d = json.load(open(DATA, encoding="utf-8"))
-    have = {story_id(l.get("source")) for l in d["listings"]}
-    have_text = {re.sub(r"\W", "", l.get("description", ""))[:80] for l in d["listings"]}
     added, skipped = [], []
-    for m in meta:
+    for m in fresh(meta):
         f = parse(m["text"])
-        sig = re.sub(r"\W", "", f["description"])[:80]
-        if m["k"] in have or sig in have_text:
-            continue
         if f.pop("sold"):
             skipped.append(f["title"] + " (зарагдсан)")
             continue
-        lid = "fb-" + hashlib.sha1(m["k"].encode()).hexdigest()[:8]
+        lid = "fb-" + hashlib.sha1((m.get("pid") or sig(m["text"])).encode()).hexdigest()[:8]
         imgs = []
         for n in range(m.get("n", 0)):
             b = photos.get((m["k"], n))
@@ -162,8 +188,7 @@ def add(paths):
         added.append({"id": lid, **{k: f[k] for k in ("category", "title")}, "location": None,
                       **{k: f[k] for k in ("rooms", "areaM2", "landM2", "floor", "price", "priceText")},
                       "phone": PHONE, "description": f["description"], "images": imgs, "source": m["link"],
-                      "latitude": None, "longitude": None})
-        have.add(m["k"]); have_text.add(sig)
+                      "fbPostId": m.get("pid"), "latitude": None, "longitude": None})
     if added:
         d["listings"] = added + d["listings"]  # newest first, like the Facebook feed
         json.dump(d, open(DATA, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
@@ -174,8 +199,8 @@ def add(paths):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) >= 2 and sys.argv[1] == "known":
-        known()
+    if len(sys.argv) == 3 and sys.argv[1] == "plan":
+        plan(sys.argv[2])
     elif len(sys.argv) >= 3 and sys.argv[1] == "add":
         add(sys.argv[2:])
     else:

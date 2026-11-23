@@ -2,6 +2,52 @@
   "_comment": "Facebook хуудаснаас (Отгон Багана) татсан зарууд. Засаад `npm run pages:data` ажиллуулна.",
   "listings": [
     {
+      "id": "fb-d8dcd937",
+      "category": "apartment",
+      "title": "Их хаад 13-р байр 2 өрөө",
+      "location": null,
+      "rooms": 2,
+      "areaM2": 48.99,
+      "landM2": null,
+      "floor": "12/6",
+      "price": null,
+      "priceText": null,
+      "phone": "9952-8028",
+      "description": "ИХ ХААД 13-Р БАЙР #2өрөө #ХУДАЛДАНА\n48.99мкв | 12/6 давхарт\nХарууц: урагшаа харсан\nСуурилагдсан тавилга бүгд үлдэнэ",
+      "images": [
+        "img/fb/fb-d8dcd937/1.jpg",
+        "img/fb/fb-d8dcd937/2.jpg",
+        "img/fb/fb-d8dcd937/3.jpg",
+        "img/fb/fb-d8dcd937/4.jpg",
+        "img/fb/fb-d8dcd937/5.jpg"
+      ],
+      "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02s4nhq1YY8oNQJqYMC49jVXwPdTqCnXu3t5BB533j6frVG3khK2jnubSphaLCXhvzl&id=61593044292253",
+      "fbPostId": "122132225883434809",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "fb-e247e7c1",
+      "category": "apartment",
+      "title": "6-6 байрнд 1 өрөө",
+      "location": null,
+      "rooms": 1,
+      "areaM2": null,
+      "landM2": null,
+      "floor": null,
+      "price": null,
+      "priceText": null,
+      "phone": "9952-8028",
+      "description": "6-6 байрнд #1өрөө #ХУДАЛДАНА\nХарууц: Баруун болон урагшаа",
+      "images": [
+        "img/fb/fb-e247e7c1/1.jpg"
+      ],
+      "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02DKEbyis3FiLLvyc2ApRyhJprWqSSRLnwTMvTGTqW664ssVMZPen1wANcGjdZPgT2l&id=61593044292253",
+      "fbPostId": null,
+      "latitude": null,
+      "longitude": null
+    },
+    {
       "id": "fb-00",
       "category": "apartment",
       "title": "Евро резидэнс 3 өрөө байр",

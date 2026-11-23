@@ -1,42 +1,37 @@
 // Facebook → ERDENET HOME sync, browser part.
 // Run inside the Claude built-in browser on https://www.facebook.com/profile.php?id=61593044292253
-// while signed in to Facebook. Paste this whole file once (javascript_exec), then call:
+// while signed in to Facebook. Paste this whole file once (javascript_exec), then:
 //
-//   await __ehScan()              → scrolls the profile and collects posts (may need several calls;
-//                                   returns {done:false} until the end of the feed or `maxScreens`)
-//   __ehNew(knownIds)             → keeps only posts whose story id is not in knownIds; returns a
-//                                   summary and queues their photos
-//   __ehMeta()                    → JSON string of the new posts' texts and links (padded so the tool
-//                                   result is saved to a file instead of shown inline)
-//   await __ehNext()              → JSON string with the next ~240 KB of photos (base64 JPEG);
-//                                   repeat until cur === total
+//   await __ehScan(15)   → captures the newest posts (repeat until {done:true}; ≤ 30 s per call)
+//   __ehMeta()           → JSON string of every captured post (text, ids, photo count), padded so the
+//                          tool result is saved to a file → feed it to `merge.py plan`
+//   __ehQueue(keys)      → queues the photos of the posts `merge.py plan` reported as new
+//   await __ehNext()     → JSON string with the next ~240 KB of photos; repeat until cur === total
 //
-// Facebook unmounts posts that scroll off screen, so posts are captured while scrolling.
+// New posts are always at the top of the profile, so a daily run only needs the first screens.
+// Ids: `pid` is the numeric post id from photo links ("pcb.<id>") and is stable; the "pfbid…"
+// story id changes between sessions, so it is only used as a key within one run.
 (function () {
   "use strict";
   var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
   window.__eh = window.__eh || {};
 
-  function storyId(href) {
-    try {
-      var u = new URL(href);
-      return u.searchParams.get("story_fbid") || (href.match(/pfbid\w+/) || [])[0] || (href.match(/\/posts\/(\d+)/) || [])[1] || null;
-    } catch (e) { return null; }
-  }
-
   async function expand() {
     var btns = Array.prototype.filter.call(document.querySelectorAll('div[aria-posinset] div[role="button"]'), function (e) {
       return /^(See more|Цааш үзэх|Цааш нь)$/.test(e.textContent.trim());
     });
-    for (var i = 0; i < btns.length; i++) { try { btns[i].click(); } catch (e) { /* ignore */ } await sleep(150); }
+    for (var i = 0; i < btns.length; i++) { try { btns[i].click(); } catch (e) { /* ignore */ } await sleep(120); }
   }
 
   async function collect() {
     await expand();
     document.querySelectorAll("div[aria-posinset]").forEach(function (p) {
-      var link = Array.prototype.map.call(p.querySelectorAll("a[href]"), function (a) { return a.href; })
-        .find(function (h) { return /story_fbid|\/posts\/|pfbid/.test(h); });
-      var k = link && storyId(link);
+      var hrefs = Array.prototype.map.call(p.querySelectorAll("a[href]"), function (a) { return a.href; });
+      var story = hrefs.find(function (h) { return /story_fbid=|\/posts\/|pfbid/.test(h); });
+      var pcb = hrefs.map(function (h) { return (h.match(/pcb\.(\d+)/) || [])[1]; }).find(Boolean) || null;
+      var sid = null;
+      if (story) { try { sid = new URL(story).searchParams.get("story_fbid") || (story.match(/pfbid\w+/) || [])[0]; } catch (e) { /* ignore */ } }
+      var k = pcb || sid;
       if (!k) return;
       var msg = p.querySelector('[data-ad-preview="message"], [data-ad-comet-preview="message"]');
       var text = msg ? msg.innerText : "";
@@ -49,56 +44,49 @@
       }).map(function (i) { return i.src; });
       var prev = window.__eh[k] || {};
       window.__eh[k] = {
-        k: k,
+        k: k, pid: pcb || prev.pid || null,
         text: text.length > (prev.text || "").length ? text : prev.text || "",
         imgs: Array.from(new Set((prev.imgs || []).concat(imgs))),
-        link: "https://www.facebook.com/permalink.php?story_fbid=" + encodeURIComponent(k) + "&id=61593044292253",
+        link: sid ? "https://www.facebook.com/permalink.php?story_fbid=" + encodeURIComponent(sid) + "&id=61593044292253" : prev.link || "",
         order: prev.order != null ? prev.order : Object.keys(window.__eh).length,
       };
     });
   }
 
-  // Scroll the profile in 700px steps for up to ~35 s per call (tool calls time out at 45 s).
-  window.__ehScan = async function (maxScreens) {
-    maxScreens = maxScreens || 80;
-    window.__ehY = window.__ehY || 0;
-    window.__ehStuck = window.__ehStuck || 0;
-    var t0 = Date.now();
-    while (Date.now() - t0 < 35000) {
+  window.__ehScan = async function (maxPosts) {
+    maxPosts = maxPosts || 15;
+    var t0 = Date.now(), still = 0;
+    while (!document.querySelector("div[aria-posinset]") && Date.now() - t0 < 15000) await sleep(500);
+    while (Date.now() - t0 < 30000) {
+      var before = Object.keys(window.__eh).length;
       await collect();
-      window.__ehY += 700;
-      window.scrollTo(0, window.__ehY);
-      await sleep(900);
-      var h = document.documentElement.scrollHeight;
-      if (window.__ehY >= h - window.innerHeight) {
-        await sleep(1500);
-        if (document.documentElement.scrollHeight === h) window.__ehStuck++; else window.__ehStuck = 0;
-      }
-      if (window.__ehStuck >= 4 || window.__ehY / 700 >= maxScreens) {
-        await collect();
-        return { done: true, posts: Object.keys(window.__eh).length };
-      }
+      if (Object.keys(window.__eh).length >= maxPosts) return { done: true, posts: Object.keys(window.__eh).length };
+      var ps = document.querySelectorAll("div[aria-posinset]");
+      if (ps.length) ps[ps.length - 1].scrollIntoView({ block: "end" });
+      window.scrollBy(0, 600);
+      await sleep(1800);
+      still = Object.keys(window.__eh).length === before ? still + 1 : 0;
+      // Facebook stopped loading more ("This is taking longer than expected") or the feed ended.
+      if (still >= 6) return { done: true, posts: Object.keys(window.__eh).length, end: true };
     }
     return { done: false, posts: Object.keys(window.__eh).length };
   };
 
-  window.__ehNew = function (knownIds) {
-    var known = new Set(knownIds || []);
-    window.__ehFresh = Object.values(window.__eh)
-      .filter(function (p) { return !known.has(p.k) && p.text && p.text.replace(/\s|9952-8028/g, "").length > 15; })
-      .sort(function (a, b) { return a.order - b.order; });
-    window.__q = [];
-    window.__ehFresh.forEach(function (p) { p.imgs.slice(0, 8).forEach(function (u, n) { window.__q.push({ k: p.k, n: n, u: u }); }); });
-    window.__cur = 0;
-    return {
-      scanned: Object.keys(window.__eh).length, fresh: window.__ehFresh.length, photos: window.__q.length,
-      heads: window.__ehFresh.map(function (p) { return p.text.split("\n")[0].slice(0, 60); }),
-    };
+  window.__ehMeta = function () {
+    var meta = Object.values(window.__eh).sort(function (a, b) { return a.order - b.order; }).map(function (p) {
+      return { k: p.k, pid: p.pid, text: p.text, link: p.link, n: Math.min(p.imgs.length, 8) };
+    });
+    return JSON.stringify({ meta: meta }) + " ".repeat(120000);
   };
 
-  window.__ehMeta = function () {
-    var meta = window.__ehFresh.map(function (p) { return { k: p.k, text: p.text, link: p.link, n: Math.min(p.imgs.length, 8) }; });
-    return JSON.stringify({ meta: meta }) + " ".repeat(120000);
+  window.__ehQueue = function (keys) {
+    window.__q = [];
+    (keys || []).forEach(function (k) {
+      var p = window.__eh[k];
+      if (p) p.imgs.slice(0, 8).forEach(function (u, n) { window.__q.push({ k: k, n: n, u: u }); });
+    });
+    window.__cur = 0;
+    return { photos: window.__q.length };
   };
 
   async function enc(u) {
@@ -113,8 +101,8 @@
 
   window.__ehNext = async function (limit) {
     limit = limit || 240000;
-    var out = [], size = 0;
-    while (window.__cur < window.__q.length) {
+    var out = [], size = 0, t0 = Date.now();
+    while (window.__cur < window.__q.length && Date.now() - t0 < 30000) {
       var it = window.__q[window.__cur], b = "";
       try { b = await enc(it.u); } catch (e) { b = ""; }
       if (size + b.length > limit && out.length) break;
