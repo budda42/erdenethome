@@ -33,7 +33,11 @@
     if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, "") + " сая ₮";
     return mnt(n);
   }
-  function priceOf(i) { return i.priceText || mnt(i.price) || "Үнэ тохиролцоно"; }
+  function metaOf(i) {
+    return [i.rooms ? i.rooms + " өрөө" : null, i.areaM2 ? i.areaM2 + " м²" : null,
+      i.landM2 ? i.landM2 + " м² газар" : null, i.floor ? i.floor + " давхар" : null].filter(Boolean).join(" · ");
+  }
+  function priceOf(i) { return i.priceText || mnt(i.price) || "Үнийг залгаж асууна уу"; }
   function $(s) { return document.querySelector(s); }
   function tel(p) { return "tel:" + String(p || "").replace(/[^\d+]/g, ""); }
   function phoneOf(i) { return (i && i.phone) || cfg.phone; }
@@ -143,7 +147,7 @@
   // ---------- grid ----------
   function card(i) {
     var img = i.images && i.images[0];
-    var meta = [i.rooms ? i.rooms + " өрөө" : null, i.areaM2 ? i.areaM2 + " м²" : null, i.landM2 ? i.landM2 + " м² газар" : null].filter(Boolean).join(" · ");
+    var meta = metaOf(i);
     return '<article class="card item" data-id="' + esc(i.id) + '" tabindex="0">' +
       '<div class="thumb' + (img ? "" : " noimg") + '">' + (img ? '<img loading="lazy" alt="" src="' + esc(img) + '">' : esc(CAT[i.category] ? CAT[i.category].icon : "🏠")) +
       '<span class="badge">' + esc(CAT[i.category] ? CAT[i.category].label : "") + "</span></div>" +
@@ -167,7 +171,7 @@
   // ---------- swipe deck ----------
   function swipeCard(i, behind) {
     var imgs = i.images || [];
-    var meta = [i.rooms ? i.rooms + " өрөө" : null, i.areaM2 ? i.areaM2 + " м²" : null, i.landM2 ? i.landM2 + " м² газар" : null].filter(Boolean).join(" · ");
+    var meta = metaOf(i);
     return '<div class="swipe' + (behind ? " behind" : "") + '" data-id="' + esc(i.id) + '" data-img="0">' +
       '<div class="photo"' + (imgs[0] ? ' style="background-image:url(&quot;' + esc(imgs[0]) + '&quot;)"' : "") + ">" +
       (imgs[0] ? "" : esc(CAT[i.category] ? CAT[i.category].icon : "🏠")) +
@@ -312,7 +316,7 @@
     var dlg = $("#detail");
     var imgs = i.images || [];
     var spec = [["Ангилал", CAT[i.category] && CAT[i.category].label], ["Өрөө", i.rooms], ["Талбай", i.areaM2 ? i.areaM2 + " м²" : null],
-      ["Газрын хэмжээ", i.landM2 ? i.landM2 + " м²" : null], ["м² үнэ", i.price && i.areaM2 ? mnt(i.price / i.areaM2) : null], ["Байршил", i.location]]
+      ["Газрын хэмжээ", i.landM2 ? i.landM2 + " м²" : null], ["Давхар", i.floor], ["м² үнэ", i.price && i.areaM2 ? mnt(i.price / i.areaM2) : null], ["Байршил", i.location]]
       .filter(function (r) { return r[1] != null && r[1] !== ""; });
     dlg.innerHTML =
       '<button class="close" aria-label="Хаах">×</button>' +

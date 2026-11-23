@@ -173,3 +173,5 @@ h2 { font-size: 1.6rem; }
 .stat-btn:hover { border-color: var(--brand); }
 .link { color: var(--brand); font-weight: 600; }
 .link:hover { text-decoration: underline; }
+.thumb { overflow: hidden; }
+.thumb img { position: absolute; inset: 0; }
