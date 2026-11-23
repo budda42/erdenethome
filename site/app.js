@@ -94,7 +94,15 @@
           .then(function (j) { if (!j.ok) return []; state.live = true; return fromLive(j.data.items); })
           .catch(function () { return []; })
       : Promise.resolve([]);
-    return Promise.all([local, live]).then(function (r) { state.all = r[0].concat(r[1]); });
+    // Pin positions set on location.html (id → {lat, lng}); they override the data file.
+    var locs = fetch("data/locations.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).catch(function () { return {}; });
+    return Promise.all([local, live, locs]).then(function (r) {
+      var pins = r[2] || {};
+      state.all = r[0].concat(r[1]).map(function (i) {
+        var p = pins[i.id];
+        return p && isFinite(p.lat) && isFinite(p.lng) ? Object.assign({}, i, { latitude: p.lat, longitude: p.lng }) : i;
+      });
+    });
   }
 
   // ---------- filtering ----------

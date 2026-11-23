@@ -8,4 +8,6 @@ window.EH_CONFIG = {
   facebook: "https://www.facebook.com/people/%D0%9E%D1%82%D0%B3%D0%BE%D0%BD-%D0%91%D0%B0%D0%B3%D0%B0%D0%BD%D0%B0/61593044292253/",
   messenger: "https://m.me/61593044292253",
   email: "",
+  // Where location.html saves pin positions (site/data/locations.json on this branch).
+  github: { repo: "budda42/erdenethome", branch: "main", path: "site/data/locations.json" },
 };

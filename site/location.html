@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Зарын байршил тэмдэглэх — ERDENET HOME</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .loc { display: grid; grid-template-columns: 340px 1fr; gap: 16px; padding: 16px 18px; max-width: 1400px; margin: 0 auto; }
+    .loc-list { max-height: calc(100vh - 150px); overflow: auto; padding: 8px; }
+    .loc-item { display: flex; gap: 10px; align-items: center; width: 100%; text-align: left; border: 0; background: transparent; padding: 10px; border-radius: 12px; cursor: pointer; font: inherit; }
+    .loc-item:hover { background: var(--soft); }
+    .loc-item.on { background: var(--brand); color: #fff; }
+    .loc-item .dot { width: 10px; height: 10px; border-radius: 50%; background: #d1d5db; flex: none; }
+    .loc-item .dot.set { background: #16a34a; }
+    .loc-item small { display: block; opacity: .7; font-size: 12px; }
+    .loc-map { display: grid; gap: 10px; align-content: start; }
+    #lmap { height: calc(100vh - 260px); min-height: 380px; border-radius: var(--radius); }
+    .loc-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .loc-bar input[type=text] { flex: 1; min-width: 200px; border: 1px solid rgba(0,0,0,.1); border-radius: 12px; padding: 10px 12px; font: inherit; }
+    .hits { display: grid; }
+    .hits button { text-align: left; border: 0; border-bottom: 1px solid var(--line); background: #fff; padding: 8px 12px; cursor: pointer; font: inherit; font-size: 14px; }
+    .hits button:hover { background: var(--soft); }
+    .save-box { padding: 14px; display: grid; gap: 8px; }
+    .msg { font-size: 14px; }
+    .msg.ok { color: #15803d; } .msg.err { color: #b91c1c; }
+    .pinx { width: 30px; height: 40px; display: block; }
+    @media (max-width: 860px) { .loc { grid-template-columns: 1fr; } .loc-list { max-height: 240px; } #lmap { height: 55vh; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-in">
+      <a href="./" class="logo"><span>ERDENET</span> HOME</a>
+      <span class="muted">· Зарын байршил тэмдэглэх</span>
+      <a class="btn btn-ghost" href="./#map" style="margin-left:auto">← Сайт руу буцах</a>
+    </div>
+  </header>
+
+  <div class="loc">
+    <aside class="card">
+      <div style="padding:12px 12px 0">
+        <b>Зарууд</b> <span class="muted small" id="progress"></span>
+        <p class="muted small" style="margin:4px 0 0">1) Зараа сонгоно · 2) Газрын зураг дээр дарна · 3) Хадгална</p>
+      </div>
+      <div class="loc-list" id="list"></div>
+    </aside>
+
+    <section class="loc-map">
+      <div class="loc-bar">
+        <input type="text" id="q" placeholder="Хаягаар хайх (жишээ: 3-р хороолол, Оросын булаг)" />
+        <button class="btn btn-ghost" id="find" type="button">Хайх</button>
+        <button class="btn btn-ghost" id="gps" type="button">📍 Миний байршил</button>
+        <button class="btn btn-ghost" id="clear" type="button">Байршил арилгах</button>
+      </div>
+      <div class="card hits" id="hits" hidden></div>
+      <div id="sel" class="muted small">Зүүн талаас зар сонгоно уу.</div>
+      <label class="small"><input type="checkbox" id="group" checked /> Ижил төслийн бүх зарт ижил байршил өгөх (жишээ: Oyut Residence-ийн бүх байр)</label>
+      <div class="card" style="overflow:hidden"><div id="lmap"></div></div>
+
+      <div class="card save-box">
+        <div class="loc-bar">
+          <button class="btn btn-primary" id="save" type="button">💾 GitHub-д хадгалах</button>
+          <span class="msg" id="msg"></span>
+        </div>
+        <details>
+          <summary class="small">Нэг товчоор хадгалдаг болгох (GitHub token)</summary>
+          <p class="small muted">Token байхгүй үед "Хадгалах" дарахад өгөгдөл хуулагдаж, GitHub-ийн засварлах хуудас нээгдэнэ — тэнд бүгдийг сонгоод (Ctrl+A) буулгаж (Ctrl+V) <b>Commit changes</b> дарна.
+          Нэг товчоор хадгалахыг хүсвэл GitHub → Settings → Developer settings → Fine-grained tokens → зөвхөн <b>erdenethome</b> repo, <b>Contents: Read and write</b> эрхтэй token үүсгээд энд оруулна. Token зөвхөн энэ хөтөч дээр хадгалагдана.</p>
+          <div class="loc-bar">
+            <input type="text" id="token" placeholder="github_pat_…" autocomplete="off" />
+            <button class="btn btn-ghost" id="token-save" type="button">Token хадгалах</button>
+            <button class="btn btn-ghost" id="token-del" type="button">Устгах</button>
+          </div>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="location.js"></script>
+</body>
+</html>
