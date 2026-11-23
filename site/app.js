@@ -91,7 +91,7 @@
     });
   }
   function load() {
-    var local = fetch("data/listings.json").then(function (r) { return r.json(); }).then(function (d) { return d.listings || []; })
+    var local = fetch("data/listings.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (d) { return d.listings || []; })
       .catch(function () { return []; });
     var live = APP
       ? fetch(APP + "/api/properties?pageSize=200").then(function (r) { return r.json(); })
