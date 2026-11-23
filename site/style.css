@@ -175,3 +175,21 @@ h2 { font-size: 1.6rem; }
 .link:hover { text-decoration: underline; }
 .thumb { overflow: hidden; }
 .thumb img { position: absolute; inset: 0; }
+
+/* ---------- photo navigation ---------- */
+.pnav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 40px; height: 40px; border: 0; border-radius: 50%;
+  background: rgba(255,255,255,.9); color: #111; font: 700 26px/1 system-ui; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  display: flex; align-items: center; justify-content: center; padding-bottom: 3px; opacity: .92; transition: .15s; }
+.pnav:hover { opacity: 1; transform: translateY(-50%) scale(1.08); }
+.pnav.prev { left: 10px; } .pnav.next { right: 10px; }
+.swipe .pnav { top: 42%; }
+.counter { position: absolute; right: 12px; top: 22px; z-index: 2; background: rgba(0,0,0,.55); color: #fff; border-radius: 999px; padding: 3px 9px; font: 600 12px/1.4 system-ui; }
+.gwrap { position: relative; }
+.gwrap .counter { top: auto; bottom: 10px; }
+.gallery { scrollbar-width: none; }
+.gallery::-webkit-scrollbar { display: none; }
+.thumbs { display: flex; gap: 6px; padding: 8px 22px 0; overflow-x: auto; }
+.thumbs button { flex: none; width: 64px; height: 48px; padding: 0; border: 2px solid transparent; border-radius: 8px; overflow: hidden; cursor: pointer; background: var(--soft); opacity: .65; }
+.thumbs button.on { border-color: var(--brand); opacity: 1; }
+.thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (hover: none) { .pnav { width: 36px; height: 36px; font-size: 22px; } }

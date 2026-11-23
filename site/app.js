@@ -175,7 +175,10 @@
     return '<div class="swipe' + (behind ? " behind" : "") + '" data-id="' + esc(i.id) + '" data-img="0">' +
       '<div class="photo"' + (imgs[0] ? ' style="background-image:url(&quot;' + esc(imgs[0]) + '&quot;)"' : "") + ">" +
       (imgs[0] ? "" : esc(CAT[i.category] ? CAT[i.category].icon : "🏠")) +
-      (imgs.length > 1 ? '<div class="bars">' + imgs.map(function (_, k) { return '<i class="' + (k ? "" : "on") + '"></i>'; }).join("") + "</div>" : "") +
+      (imgs.length > 1 ? '<div class="bars">' + imgs.map(function (_, k) { return '<i class="' + (k ? "" : "on") + '"></i>'; }).join("") + "</div>" +
+        '<button type="button" class="pnav prev" data-step="-1" aria-label="Өмнөх зураг">‹</button>' +
+        '<button type="button" class="pnav next" data-step="1" aria-label="Дараагийн зураг">›</button>' +
+        '<span class="counter">1 / ' + imgs.length + "</span>" : "") +
       '<span class="cat">' + esc(CAT[i.category] ? CAT[i.category].label : "") + "</span>" +
       '<span class="stamp like">ХАДГАЛАХ</span><span class="stamp nope">АЛГАСАХ</span>' +
       '<div class="shade"></div><div class="over"><h3>' + esc(i.title) + '</h3><div class="p">' + esc(priceOf(i)) + "</div>" +
@@ -210,11 +213,11 @@
     setTimeout(function () { state.pos++; renderDeck(); }, 300);
   }
   function bindDrag(el) {
-    var sx = 0, sy = 0, dx = 0, dragging = false, moved = false;
+    var sx = 0, sy = 0, dx = 0, dragging = false, moved = false, downOn = null;
     var like = el.querySelector(".stamp.like"), nope = el.querySelector(".stamp.nope");
     el.addEventListener("pointerdown", function (e) {
       if (e.target.closest("a,button")) return;
-      dragging = true; moved = false; sx = e.clientX; sy = e.clientY; dx = 0;
+      dragging = true; moved = false; sx = e.clientX; sy = e.clientY; dx = 0; downOn = e.target;
       el.setPointerCapture(e.pointerId); el.classList.remove("anim");
     });
     el.addEventListener("pointermove", function (e) {
@@ -233,24 +236,33 @@
       el.classList.add("anim"); el.style.transform = ""; like.style.opacity = 0; nope.style.opacity = 0;
       if (!moved && e.type === "pointerup") {
         // Tap: on the photo → next picture, on the text → details.
-        if (e.target.closest(".over")) return openDetail(el.dataset.id);
-        if (e.target.closest(".photo")) nextImage(el, e);
+        if (downOn && downOn.closest(".over")) return openDetail(el.dataset.id);
+        if (downOn && downOn.closest(".photo")) {
+          var r = el.getBoundingClientRect();
+          stepImage(el, e.clientX - r.left < r.width / 3 ? -1 : 1);
+        }
       }
     }
     el.addEventListener("pointerup", end);
     el.addEventListener("pointercancel", end);
   }
-  function nextImage(el, e) {
+  function stepImage(el, step) {
     var i = state.all.find(function (x) { return String(x.id) === el.dataset.id; });
     var imgs = (i && i.images) || [];
     if (imgs.length < 2) return openDetail(el.dataset.id);
-    var rect = el.getBoundingClientRect();
-    var k = Number(el.dataset.img) + (e.clientX - rect.left < rect.width / 3 ? -1 : 1);
-    k = (k + imgs.length) % imgs.length;
+    var k = (Number(el.dataset.img) + step + imgs.length) % imgs.length;
     el.dataset.img = k;
     el.querySelector(".photo").style.backgroundImage = 'url("' + imgs[k].replace(/"/g, "%22") + '")';
     el.querySelectorAll(".bars i").forEach(function (b, n) { b.classList.toggle("on", n === k); });
+    var c = el.querySelector(".counter"); if (c) c.textContent = (k + 1) + " / " + imgs.length;
+    // Warm the next picture so tapping feels instant.
+    new Image().src = imgs[(k + 1) % imgs.length];
   }
+  $("#deck").addEventListener("click", function (e) {
+    var b = e.target.closest(".pnav"); if (!b) return;
+    e.stopPropagation();
+    stepImage(b.closest(".swipe"), Number(b.dataset.step));
+  });
   $("#btn-like").onclick = function () { fling(1); };
   $("#btn-nope").onclick = function () { fling(-1); };
   $("#btn-info").onclick = function () { var i = current(); if (i) openDetail(i.id); };
@@ -258,6 +270,9 @@
     if (state.view !== "swipe" || document.querySelector("dialog[open]") || /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
     if (e.key === "ArrowRight") fling(1);
     if (e.key === "ArrowLeft") fling(-1);
+    if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+      var top = $("#deck .swipe:not(.behind)"); if (top) { e.preventDefault(); stepImage(top, e.key === "ArrowDown" ? 1 : -1); }
+    }
   });
 
   // ---------- views ----------
@@ -320,10 +335,15 @@
       .filter(function (r) { return r[1] != null && r[1] !== ""; });
     dlg.innerHTML =
       '<button class="close" aria-label="Хаах">×</button>' +
-      '<div class="gallery">' + (imgs.length ? imgs.map(function (s) { return '<img loading="lazy" alt="" src="' + esc(s) + '">'; }).join("")
+      '<div class="gwrap"><div class="gallery">' + (imgs.length ? imgs.map(function (s) { return '<img loading="lazy" alt="" src="' + esc(s) + '">'; }).join("")
         : '<div class="ph">' + esc(CAT[i.category] ? CAT[i.category].icon : "🏠") + "</div>") + "</div>" +
+      (imgs.length > 1 ? '<button type="button" class="pnav prev" data-step="-1" aria-label="Өмнөх зураг">‹</button>' +
+        '<button type="button" class="pnav next" data-step="1" aria-label="Дараагийн зураг">›</button>' +
+        '<span class="counter">1 / ' + imgs.length + "</span>" : "") + "</div>" +
+      (imgs.length > 1 ? '<div class="thumbs">' + imgs.map(function (s, n) {
+        return '<button type="button" data-n="' + n + '"' + (n ? "" : ' class="on"') + '><img loading="lazy" alt="" src="' + esc(s) + '"></button>';
+      }).join("") + "</div>" : "") +
       '<div class="detail-body"><h2>' + esc(i.title) + "</h2>" +
-      (imgs.length > 1 ? '<span class="muted small">← гүйлгэж ' + imgs.length + " зургийг харна →</span>" : "") +
       '<span class="price" style="font-size:1.6rem">' + esc(priceOf(i)) + "</span>" +
       "<dl>" + spec.map(function (r) { return "<div><dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd></div>"; }).join("") + "</dl>" +
       (i.description ? '<p class="desc">' + esc(i.description) + "</p>" : "") +
@@ -341,6 +361,23 @@
       if (state.view === "saved") setView("saved");
     };
     dlg.onclick = function (e) { if (e.target === dlg) dlg.close(); };
+    // Gallery: arrows, thumbnails, keyboard and swipe (native scroll-snap) all stay in sync.
+    var gal = dlg.querySelector(".gallery");
+    function cur() { return Math.round(gal.scrollLeft / (gal.clientWidth || 1)); }
+    function go(n) { n = (n + imgs.length) % imgs.length; gal.scrollTo({ left: n * gal.clientWidth, behavior: "smooth" }); }
+    function sync() {
+      var n = cur(), c = dlg.querySelector(".counter");
+      if (c) c.textContent = (n + 1) + " / " + imgs.length;
+      dlg.querySelectorAll(".thumbs button").forEach(function (b, k) { b.classList.toggle("on", k === n); });
+    }
+    gal.addEventListener("scroll", function () { clearTimeout(gal._t); gal._t = setTimeout(sync, 60); });
+    dlg.querySelectorAll(".gwrap .pnav").forEach(function (b) { b.onclick = function () { go(cur() + Number(b.dataset.step)); }; });
+    dlg.querySelectorAll(".thumbs button").forEach(function (b) { b.onclick = function () { go(Number(b.dataset.n)); }; });
+    dlg.onkeydown = function (e) {
+      if (imgs.length < 2) return;
+      if (e.key === "ArrowRight") { e.preventDefault(); go(cur() + 1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); go(cur() - 1); }
+    };
     dlg.showModal();
   }
 
