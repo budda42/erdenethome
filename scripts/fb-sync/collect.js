@@ -53,21 +53,30 @@
     });
   }
 
+  // Facebook only renders posts near the viewport, so walk down one screen at a time and
+  // capture what is rendered at each step (jumping straight to the last post skips posts).
+  // Call repeatedly until {done:true}; each call runs ≤ 30 s and continues where the last stopped.
   window.__ehScan = async function (maxPosts) {
     maxPosts = maxPosts || 15;
-    var t0 = Date.now(), still = 0;
+    var t0 = Date.now();
+    if (window.__ehY == null) { window.__ehY = 0; window.__ehStill = 0; window.scrollTo(0, 0); await sleep(1500); }
     while (!document.querySelector("div[aria-posinset]") && Date.now() - t0 < 15000) await sleep(500);
     while (Date.now() - t0 < 30000) {
-      var before = Object.keys(window.__eh).length;
       await collect();
-      if (Object.keys(window.__eh).length >= maxPosts) return { done: true, posts: Object.keys(window.__eh).length };
-      var ps = document.querySelectorAll("div[aria-posinset]");
-      if (ps.length) ps[ps.length - 1].scrollIntoView({ block: "end" });
-      window.scrollBy(0, 600);
-      await sleep(1800);
-      still = Object.keys(window.__eh).length === before ? still + 1 : 0;
-      // Facebook stopped loading more ("This is taking longer than expected") or the feed ended.
-      if (still >= 6) return { done: true, posts: Object.keys(window.__eh).length, end: true };
+      var n = Object.keys(window.__eh).length;
+      if (n >= maxPosts) return { done: true, posts: n };
+      var h = document.documentElement.scrollHeight;
+      if (window.__ehY + window.innerHeight >= h - 20) {
+        // At the bottom: wait for Facebook to load more ("This is taking longer…" = it won't).
+        await sleep(2500);
+        await collect();
+        var grew = document.documentElement.scrollHeight > h || Object.keys(window.__eh).length > n;
+        window.__ehStill = grew ? 0 : window.__ehStill + 1;
+        if (window.__ehStill >= 3) return { done: true, posts: Object.keys(window.__eh).length, end: true };
+      }
+      window.__ehY = Math.min(window.__ehY + Math.round(window.innerHeight * 0.8), document.documentElement.scrollHeight);
+      window.scrollTo(0, window.__ehY);
+      await sleep(1200);
     }
     return { done: false, posts: Object.keys(window.__eh).length };
   };
