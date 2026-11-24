@@ -20,7 +20,16 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 DATA = os.path.join(ROOT, "data", "fb-listings.json")
 IMG = os.path.join(ROOT, "site", "img", "fb")
 PHONE = "9952-8028"
-AD_WORDS = r"ХУДАЛДАНА|ЗАРНА|ТҮРЭЭС|өрөө|мкв|м²|м2|\bга\b|газар|байшин|объект|оффис|агуулах"
+# A post counts as an ad when it says it is for sale / rent, or names a property AND gives a
+# size, floor or price. Greetings, news and promo posts ("Шуурхай мэдээ …") fail both tests.
+AD_DEAL = r"ХУДАЛДАНА|ХУДАЛДАХ|ЗАРНА|ЗАРАХ|ТҮРЭЭСЛҮҮЛНЭ|ТҮРЭЭСЭЛНЭ|ТҮРЭЭСЭЭР"
+AD_THING = r"өрөө|байр|байшин|газар|объект|оффис|агуулах|хаус|апартмент|хотхон"
+AD_FACT = r"\d\s*(мкв|м²|м2|га\b|сая|тэрбум|давхар)|\d+\s*/\s*\d+\s*давхар"
+
+
+def is_ad(text):
+    t = text or ""
+    return bool(re.search(AD_DEAL, t, re.I) or (re.search(AD_THING, t, re.I) and re.search(AD_FACT, t, re.I)))
 
 
 def story_id(link):
@@ -145,7 +154,7 @@ def fresh(meta):
         if len(s) < 12 or (m.get("pid") and m["pid"] in pids) or s in sigs or s in seen:
             continue
         # Only real ads: promo/news posts ("Шуурхай мэдээ …") carry none of these words.
-        if not re.search(AD_WORDS, m.get("text", ""), re.I):
+        if not is_ad(m.get("text", "")):
             continue
         seen.add(s)
         out.append(m)
