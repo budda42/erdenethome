@@ -207,3 +207,23 @@ h2 { font-size: 1.6rem; }
   .search { grid-template-columns: 1fr 1fr; }
   .search input[name=q], .search input[name=max], .search .btn { grid-column: 1 / -1; }
 }
+
+/* larger swipe card */
+.deck { max-width: 560px; height: min(800px, calc(100vh - 170px)); min-height: 520px; }
+.swipe .over h3 { font-size: 1.6rem; }
+.swipe .over .p { font-size: 2rem; }
+.swipe .over .m { font-size: 15px; }
+.swipe .cat { font-size: 14px; padding: 6px 12px; }
+.swipe .act { padding: 14px; gap: 10px; }
+.swipe .act .btn { padding: 14px; font-size: 16px; }
+.round { width: 72px; height: 72px; font-size: 30px; }
+.round.info { width: 56px; height: 56px; font-size: 24px; }
+.swipe .pnav { width: 48px; height: 48px; font-size: 30px; }
+@media (min-width: 1100px) { .deck { max-width: 620px; } }
+@media (max-width: 760px) {
+  .deck { max-width: none; height: min(640px, 72vh); }
+  .swipe .over h3 { font-size: 1.25rem; }
+  .swipe .over .p { font-size: 1.5rem; }
+  .round { width: 62px; height: 62px; font-size: 26px; }
+  .round.info { width: 48px; height: 48px; font-size: 20px; }
+}
