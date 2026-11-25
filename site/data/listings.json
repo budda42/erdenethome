@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T01:33:51.570Z",
+  "generatedAt": "2026-11-25T07:24:58.556Z",
   "listings": [
     {
       "images": [
@@ -7,7 +7,8 @@
         "img/fb/fb-27a2f230/2.jpg",
         "img/fb/fb-27a2f230/3.jpg",
         "img/fb/fb-27a2f230/4.jpg",
-        "img/fb/fb-27a2f230/5.jpg"
+        "img/fb/fb-27a2f230/5.jpg",
+        "img/fb/fb-27a2f230/6.jpg"
       ],
       "id": "fb-27a2f230",
       "category": "house",
@@ -75,7 +76,9 @@
         "img/fb/fb-e888747f/2.jpg",
         "img/fb/fb-e888747f/3.jpg",
         "img/fb/fb-e888747f/4.jpg",
-        "img/fb/fb-e888747f/5.jpg"
+        "img/fb/fb-e888747f/5.jpg",
+        "img/fb/fb-e888747f/6.jpg",
+        "img/fb/fb-e888747f/7.jpg"
       ],
       "id": "fb-e888747f",
       "category": "rent",
@@ -100,7 +103,9 @@
         "img/fb/fb-e96982e1/2.jpg",
         "img/fb/fb-e96982e1/3.jpg",
         "img/fb/fb-e96982e1/4.jpg",
-        "img/fb/fb-e96982e1/5.jpg"
+        "img/fb/fb-e96982e1/5.jpg",
+        "img/fb/fb-e96982e1/6.jpg",
+        "img/fb/fb-e96982e1/7.jpg"
       ],
       "id": "fb-e96982e1",
       "category": "apartment",
@@ -125,7 +130,8 @@
         "img/fb/fb-1f17adf4/2.jpg",
         "img/fb/fb-1f17adf4/3.jpg",
         "img/fb/fb-1f17adf4/4.jpg",
-        "img/fb/fb-1f17adf4/5.jpg"
+        "img/fb/fb-1f17adf4/5.jpg",
+        "img/fb/fb-1f17adf4/6.jpg"
       ],
       "id": "fb-1f17adf4",
       "category": "apartment",
@@ -150,7 +156,14 @@
         "img/fb/fb-3fc9ef75/2.jpg",
         "img/fb/fb-3fc9ef75/3.jpg",
         "img/fb/fb-3fc9ef75/4.jpg",
-        "img/fb/fb-3fc9ef75/5.jpg"
+        "img/fb/fb-3fc9ef75/5.jpg",
+        "img/fb/fb-3fc9ef75/6.jpg",
+        "img/fb/fb-3fc9ef75/7.jpg",
+        "img/fb/fb-3fc9ef75/8.jpg",
+        "img/fb/fb-3fc9ef75/9.jpg",
+        "img/fb/fb-3fc9ef75/10.jpg",
+        "img/fb/fb-3fc9ef75/11.jpg",
+        "img/fb/fb-3fc9ef75/12.jpg"
       ],
       "id": "fb-3fc9ef75",
       "category": "apartment",
@@ -175,7 +188,10 @@
         "img/fb/fb-44aa0d2d/2.jpg",
         "img/fb/fb-44aa0d2d/3.jpg",
         "img/fb/fb-44aa0d2d/4.jpg",
-        "img/fb/fb-44aa0d2d/5.jpg"
+        "img/fb/fb-44aa0d2d/5.jpg",
+        "img/fb/fb-44aa0d2d/6.jpg",
+        "img/fb/fb-44aa0d2d/7.jpg",
+        "img/fb/fb-44aa0d2d/8.jpg"
       ],
       "id": "fb-44aa0d2d",
       "category": "apartment",
@@ -200,7 +216,9 @@
         "img/fb/fb-d8dcd937/2.jpg",
         "img/fb/fb-d8dcd937/3.jpg",
         "img/fb/fb-d8dcd937/4.jpg",
-        "img/fb/fb-d8dcd937/5.jpg"
+        "img/fb/fb-d8dcd937/5.jpg",
+        "img/fb/fb-d8dcd937/6.jpg",
+        "img/fb/fb-d8dcd937/7.jpg"
       ],
       "id": "fb-d8dcd937",
       "category": "apartment",
@@ -246,7 +264,17 @@
         "img/fb/fb-00/2.jpg",
         "img/fb/fb-00/3.jpg",
         "img/fb/fb-00/4.jpg",
-        "img/fb/fb-00/5.jpg"
+        "img/fb/fb-00/5.jpg",
+        "img/fb/fb-00/6.jpg",
+        "img/fb/fb-00/7.jpg",
+        "img/fb/fb-00/8.jpg",
+        "img/fb/fb-00/9.jpg",
+        "img/fb/fb-00/10.jpg",
+        "img/fb/fb-00/11.jpg",
+        "img/fb/fb-00/12.jpg",
+        "img/fb/fb-00/13.jpg",
+        "img/fb/fb-00/14.jpg",
+        "img/fb/fb-00/15.jpg"
       ],
       "id": "fb-00",
       "category": "apartment",
@@ -262,7 +290,8 @@
       "description": "ЕВРО РЕСИДЭНС #3өрөөбайр #ХУДАЛДАНА\n80мкв | 9/1 давхарт\nХарууц: Урагшаа харсан\nТавилгууд үлдэнэ\n1-2 өрөө болон машин сонирхоно",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02AAcL8xY6VgCHSC9pLRMwH4K65yaZDD6u73cntuBn25yFdgv8vDooj44YwQjeAzCl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127612171434809"
     },
     {
       "images": [
@@ -270,7 +299,14 @@
         "img/fb/fb-02/2.jpg",
         "img/fb/fb-02/3.jpg",
         "img/fb/fb-02/4.jpg",
-        "img/fb/fb-02/5.jpg"
+        "img/fb/fb-02/5.jpg",
+        "img/fb/fb-02/6.jpg",
+        "img/fb/fb-02/7.jpg",
+        "img/fb/fb-02/8.jpg",
+        "img/fb/fb-02/9.jpg",
+        "img/fb/fb-02/10.jpg",
+        "img/fb/fb-02/11.jpg",
+        "img/fb/fb-02/12.jpg"
       ],
       "id": "fb-02",
       "category": "house",
@@ -286,7 +322,8 @@
       "description": "ЦЭВЭР АГААРТ БҮХ ЮМ АА ШИЙДСЭН АОС\nДэнжийн 2-р баг Халиун зүйл\n115мкв /Бүрэн цутгамал байшин/\n700мкв газартай / Эрүүл тэгш /\nЦахилгаанаар халдаг\n1 Машины гражтай\nТеррастай\nБартерт машин сонирхоно",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0uRJUNLDtBwnvbSstAzcVn8buTKYX7m3AjoUp695t5fTMcmMD83QiA5DwaCK3QumZl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122128949967434809"
     },
     {
       "images": [],
@@ -312,7 +349,10 @@
         "img/fb/fb-05/2.jpg",
         "img/fb/fb-05/3.jpg",
         "img/fb/fb-05/4.jpg",
-        "img/fb/fb-05/5.jpg"
+        "img/fb/fb-05/5.jpg",
+        "img/fb/fb-05/6.jpg",
+        "img/fb/fb-05/7.jpg",
+        "img/fb/fb-05/8.jpg"
       ],
       "id": "fb-05",
       "category": "apartment",
@@ -328,7 +368,8 @@
       "description": "ХУВЬ ЛИЗИНГ ХИЙХ БОЛОМЖТОЙ\nЗАЛУУС ХОТХОН #1өрөөбайр #ХУДАЛДАНА\n9952-8028. | Үнэ: 110саяаас\n35мкв | техникийн өрөө 7давхарт\nДавуу тал : Террастай болох боломжтой\nСул тал: Лифтгүй",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid05jzYNaaYwcnMyL5M71GKQwwVEZ5EPdChucbwfakc8zosXPPhDfTBqC3jyDzBE8xQl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127440805434809"
     },
     {
       "images": [
@@ -336,7 +377,10 @@
         "img/fb/fb-06/2.jpg",
         "img/fb/fb-06/3.jpg",
         "img/fb/fb-06/4.jpg",
-        "img/fb/fb-06/5.jpg"
+        "img/fb/fb-06/5.jpg",
+        "img/fb/fb-06/6.jpg",
+        "img/fb/fb-06/7.jpg",
+        "img/fb/fb-06/8.jpg"
       ],
       "id": "fb-06",
       "category": "house",
@@ -352,7 +396,8 @@
       "description": "ОРОСЫН БУЛАГТ ӨВӨЛ ЗУНЫ ДҮНЗЭН #БАЙШИН #ХУДАЛДАНА\nБайшин\nхэмжээтэй / 85мкв /\nЭрүүл тэгш 0.7га газартай",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0UKRTdoVRw5dVqAtmzrAVb5Xjw59LwmZBJffLRJki5Gnjf4EpqChfXnW78qNWxKofl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122131920045434809"
     },
     {
       "images": [
@@ -360,7 +405,12 @@
         "img/fb/fb-07/2.jpg",
         "img/fb/fb-07/3.jpg",
         "img/fb/fb-07/4.jpg",
-        "img/fb/fb-07/5.jpg"
+        "img/fb/fb-07/5.jpg",
+        "img/fb/fb-07/6.jpg",
+        "img/fb/fb-07/7.jpg",
+        "img/fb/fb-07/8.jpg",
+        "img/fb/fb-07/9.jpg",
+        "img/fb/fb-07/10.jpg"
       ],
       "id": "fb-07",
       "category": "apartment",
@@ -376,7 +426,8 @@
       "description": "CENTRAL RESIDENCE-2 #мастертай #3өрөөбайр #ХУДАЛДАНА\n71.41мкв | 10/2 давхарт\nХарууц : зүүн болон урагшаа харсан",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0Hfwwpgab6Kx19G2Ti3xn36LAtXJkXuhkqCYSbiwVqzrYFCYyXKkavR7S2pN8Momyl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122131373181434809"
     },
     {
       "images": [
@@ -384,7 +435,9 @@
         "img/fb/fb-08/2.jpg",
         "img/fb/fb-08/3.jpg",
         "img/fb/fb-08/4.jpg",
-        "img/fb/fb-08/5.jpg"
+        "img/fb/fb-08/5.jpg",
+        "img/fb/fb-08/6.jpg",
+        "img/fb/fb-08/7.jpg"
       ],
       "id": "fb-08",
       "category": "apartment",
@@ -400,7 +453,8 @@
       "description": "ОРГИЛ АПАРТМЕНТ 2 өрөөг 3 өрөө болгосон байр #ХУДАЛДАНА\n57.80мкв | 10/7 давхарт\nХарууц : хойшоо болон зүүн",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02EgJXhDemYzYQcw9a9k2uzkzMkx2gGGQALCHYL959rkyKSCCzGVvRfnsiF2YM5Xbpl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122131334487434809"
     },
     {
       "images": [
@@ -408,7 +462,11 @@
         "img/fb/fb-09/2.jpg",
         "img/fb/fb-09/3.jpg",
         "img/fb/fb-09/4.jpg",
-        "img/fb/fb-09/5.jpg"
+        "img/fb/fb-09/5.jpg",
+        "img/fb/fb-09/6.jpg",
+        "img/fb/fb-09/7.jpg",
+        "img/fb/fb-09/8.jpg",
+        "img/fb/fb-09/9.jpg"
       ],
       "id": "fb-09",
       "category": "apartment",
@@ -424,7 +482,8 @@
       "description": "ЗАЛУУС-21 #2өрөөбайр #хямд #ХУДАЛДАНА\nҮнэ: 128саяаас\n33.31мкв | 3 давхарт\nГал тогоо тавилга үлдэнэ",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02xFdsfTRsAB9LvfLqqnP6Z4q8UKqaG3J9v4crztFRyFbqkRMEKfn48uPe1XJHQcFl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122131317213434809"
     },
     {
       "images": [
@@ -432,7 +491,8 @@
         "img/fb/fb-10/2.jpg",
         "img/fb/fb-10/3.jpg",
         "img/fb/fb-10/4.jpg",
-        "img/fb/fb-10/5.jpg"
+        "img/fb/fb-10/5.jpg",
+        "img/fb/fb-10/6.jpg"
       ],
       "id": "fb-10",
       "category": "apartment",
@@ -448,7 +508,8 @@
       "description": "6-13 #арктай #1өрөөбайр #ХУДАЛДАНА\n5/5 давхарт\nГал тогоо тавилга үлдэнэ",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0uw1NVTWahvK9dSAHRpedFNABvDKcPzZtCQ3ZwstsUfPWyifBWPRxnLqVWBzP17hal&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122130658473434809"
     },
     {
       "images": [
@@ -456,7 +517,10 @@
         "img/fb/fb-11/2.jpg",
         "img/fb/fb-11/3.jpg",
         "img/fb/fb-11/4.jpg",
-        "img/fb/fb-11/5.jpg"
+        "img/fb/fb-11/5.jpg",
+        "img/fb/fb-11/6.jpg",
+        "img/fb/fb-11/7.jpg",
+        "img/fb/fb-11/8.jpg"
       ],
       "id": "fb-11",
       "category": "apartment",
@@ -472,7 +536,8 @@
       "description": "ГРАНД ГАРДЕН 6-Р БАЙР #2өрөө #ХУДАЛДАНА\n56мкв | 2 давхарт\nХарууц: баруун харсан\nГал тогоо тавилга үлдэнэ",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02jBR7D15JHUCFnLhV5vRL6JqJCiRh7oKu5LkjbDP3Gh9cDH2wTciCcBmPLK87owrxl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122130519483434809"
     },
     {
       "images": [
@@ -480,7 +545,9 @@
         "img/fb/fb-12/2.jpg",
         "img/fb/fb-12/3.jpg",
         "img/fb/fb-12/4.jpg",
-        "img/fb/fb-12/5.jpg"
+        "img/fb/fb-12/5.jpg",
+        "img/fb/fb-12/6.jpg",
+        "img/fb/fb-12/7.jpg"
       ],
       "id": "fb-12",
       "category": "apartment",
@@ -496,7 +563,8 @@
       "description": "E TOWER #2өрөөбайр #хямд #ХУДАЛДАНА\n49.17мкв | 16/6 давхарт\nХарууц : баруун харсан",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0jhn56ZnooPoTHN3pjfQ9D7qVPyjCy5wr3u44RWDhjXVm7tqnWZwY1U8wbarAF7fQl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122130395961434809"
     },
     {
       "images": [
@@ -504,7 +572,10 @@
         "img/fb/fb-13/2.jpg",
         "img/fb/fb-13/3.jpg",
         "img/fb/fb-13/4.jpg",
-        "img/fb/fb-13/5.jpg"
+        "img/fb/fb-13/5.jpg",
+        "img/fb/fb-13/6.jpg",
+        "img/fb/fb-13/7.jpg",
+        "img/fb/fb-13/8.jpg"
       ],
       "id": "fb-13",
       "category": "apartment",
@@ -520,7 +591,8 @@
       "description": "ГРАНД ГАРДЕН 5-Р БАЙР #2өрөө #ХУДАЛДАНА\n55мкв | 1 давхарт\nХарууц: хойшоо харсан\nТавилга үлдэнэ",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid035z5XpH99qg76pm2CxwbzaesbYj8ABea1pYffgXEdpadfsAE1W97uYw2uaWG8yEDrl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122130326169434809"
     },
     {
       "images": [
@@ -528,7 +600,11 @@
         "img/fb/fb-14/2.jpg",
         "img/fb/fb-14/3.jpg",
         "img/fb/fb-14/4.jpg",
-        "img/fb/fb-14/5.jpg"
+        "img/fb/fb-14/5.jpg",
+        "img/fb/fb-14/6.jpg",
+        "img/fb/fb-14/7.jpg",
+        "img/fb/fb-14/8.jpg",
+        "img/fb/fb-14/9.jpg"
       ],
       "id": "fb-14",
       "category": "rent",
@@ -544,7 +620,8 @@
       "description": "6-14-Р БАЙРНД БҮРЭН ТАВИЛГАТАЙ\nТОМ МКВ-ТАЙ 2 ӨРӨӨ ТҮРЭЭСЛҮҮЛНЭ\nнөхцөлтэй\n6/6давхарт\nУдаан хугацаагаар байх хүн хайж байгаа шүү",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02VQSE3X5EApB6mC3ctvJWG4Hps9nNgdnqL5Touc589k2of7xaWBDMXTSCTDtJQ5qul&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122130096447434809"
     },
     {
       "images": [
@@ -552,7 +629,14 @@
         "img/fb/fb-15/2.jpg",
         "img/fb/fb-15/3.jpg",
         "img/fb/fb-15/4.jpg",
-        "img/fb/fb-15/5.jpg"
+        "img/fb/fb-15/5.jpg",
+        "img/fb/fb-15/6.jpg",
+        "img/fb/fb-15/7.jpg",
+        "img/fb/fb-15/8.jpg",
+        "img/fb/fb-15/9.jpg",
+        "img/fb/fb-15/10.jpg",
+        "img/fb/fb-15/11.jpg",
+        "img/fb/fb-15/12.jpg"
       ],
       "id": "fb-15",
       "category": "apartment",
@@ -568,7 +652,8 @@
       "description": "ИПОТЕК ШИЙДЭХ БАЙР\nROYAL TOWER #2өрөөбайр #ХУДАЛДАНА\n62.41мкв | 9 давхарт\nХарууц : урагшаа харсан.",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0XaFF4ynfFCdLzZcVsvLwos3ihAPvx8WaKxyk3YN28fqFBsQjjWnHny9PBKtsaV5tl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122129909037434809"
     },
     {
       "images": [
@@ -576,7 +661,12 @@
         "img/fb/fb-16/2.jpg",
         "img/fb/fb-16/3.jpg",
         "img/fb/fb-16/4.jpg",
-        "img/fb/fb-16/5.jpg"
+        "img/fb/fb-16/5.jpg",
+        "img/fb/fb-16/6.jpg",
+        "img/fb/fb-16/7.jpg",
+        "img/fb/fb-16/8.jpg",
+        "img/fb/fb-16/9.jpg",
+        "img/fb/fb-16/10.jpg"
       ],
       "id": "fb-16",
       "category": "apartment",
@@ -592,7 +682,8 @@
       "description": "ГРАНД ГАРДЕН 4-Р БАЙР\n#3өрөө #хямд #ХУДАЛДАНА\n9952-8028 | Үнэ: 3.3саяаас\n77.51мкв | 10/9давхарт\nХарууц: хойшоо харсан\nБартерт машин сонирхоно",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0uPSnrtPiQRAwXgSUsvedD2HuJpp21TPHjVG1orFiixTRKTgH2i5j12PJtdzcQ6Jgl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122129875965434809"
     },
     {
       "images": [
@@ -616,7 +707,8 @@
       "description": "5-11 байр #3өрөөбайр #хямд #ХУДАЛДАНА\n5/1давхарт\nХарууц: Баруун болон зүүн\nХаранхуй өрөөтэй",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02d2jgQKkU4y6bLfRWncRReVawqjJLhMVVmttTeRtSGqYJ3sF6ym1vZA8D6T1HTh9Dl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122129665611434809"
     },
     {
       "images": [
@@ -624,7 +716,13 @@
         "img/fb/fb-18/2.jpg",
         "img/fb/fb-18/3.jpg",
         "img/fb/fb-18/4.jpg",
-        "img/fb/fb-18/5.jpg"
+        "img/fb/fb-18/5.jpg",
+        "img/fb/fb-18/6.jpg",
+        "img/fb/fb-18/7.jpg",
+        "img/fb/fb-18/8.jpg",
+        "img/fb/fb-18/9.jpg",
+        "img/fb/fb-18/10.jpg",
+        "img/fb/fb-18/11.jpg"
       ],
       "id": "fb-18",
       "category": "apartment",
@@ -640,7 +738,8 @@
       "description": "ИПОТЕК ШИЙДЭХ БАЙР\nROYAL TOWER #3өрөөбайр #ХУДАЛДАНА\n79.2мкв | 6 болон 3 давхарт\nХарууц: Хойшоо харсан",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0DR8ggesvyezozrceQjxLQmaZPEQXTu7W4upL8MQtAwvr8925xRDywVmZymANuLril&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122128840521434809"
     },
     {
       "images": [
@@ -648,7 +747,11 @@
         "img/fb/fb-19/2.jpg",
         "img/fb/fb-19/3.jpg",
         "img/fb/fb-19/4.jpg",
-        "img/fb/fb-19/5.jpg"
+        "img/fb/fb-19/5.jpg",
+        "img/fb/fb-19/6.jpg",
+        "img/fb/fb-19/7.jpg",
+        "img/fb/fb-19/8.jpg",
+        "img/fb/fb-19/9.jpg"
       ],
       "id": "fb-19",
       "category": "apartment",
@@ -664,7 +767,8 @@
       "description": "ЦЭГЦ АПАРТМЕНТ #1өрөөбайр #ХУДАЛДАНА\n29.46мкв | 9/4 давхарт\nХарууц: Баруун харсан\nСуурилуулсан тавилга бүгд үлдэнэ",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid037h8fTLKqi95MovYP2ipycFPMtjQBq9fH9h3LwFLzkXaDKdg7MRYJFd1f9Ur4P7zTl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122128696887434809"
     },
     {
       "images": [
@@ -686,7 +790,8 @@
       "description": "ЭРДЭНЭТ ХОТЫН ТӨВ ЗАМ ДАГУУ #ҮЙЛЧИЛГЭЭНИЙ #ОБЪЕКТ ХУДАЛДАНА!\nОБЪЕКТЫН МЭДЭЭЛЭЛ:\nОбъект: 204 м² | 2 давхар\nГазрын хэмжээ: 184 м²\nТөвийн дулаантай\nЦайны газар ажиллуулах боломжтой\nБаар, караоке ажиллуулах боломжтой\nХүнсний дэлгүүр болон бусад үйлчилгээ эрхлэх боломжтой\nБаар, караокены зөвшөөрөл 2029 онд дуусна.\nБартерт орон сууц оролцуулах боломжтой!\nБайршлын давуу талаа ашиглан бизнесээ эхлүүлэх, одоо байгаа үйл ажиллагаагаа өргөжүүлэх боломжтой объект!\n#ЭрдэнэтХот #ОбъектХудалдана #ҮйлчилгээнийОбъект #БизнесийнБайр #Баар #Караоке #ЦайныГазар #ҮлХөдлөхХөрөнгө #БартерБоломжтой",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid05U3mvE2ZEmorDbggHu1oc36AiXxe7fiUpHBuN2WemntGFqCcbPwfR43YQibJsLAvl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127687273434809"
     },
     {
       "images": [
@@ -694,7 +799,16 @@
         "img/fb/fb-21/2.jpg",
         "img/fb/fb-21/3.jpg",
         "img/fb/fb-21/4.jpg",
-        "img/fb/fb-21/5.jpg"
+        "img/fb/fb-21/5.jpg",
+        "img/fb/fb-21/6.jpg",
+        "img/fb/fb-21/7.jpg",
+        "img/fb/fb-21/8.jpg",
+        "img/fb/fb-21/9.jpg",
+        "img/fb/fb-21/10.jpg",
+        "img/fb/fb-21/11.jpg",
+        "img/fb/fb-21/12.jpg",
+        "img/fb/fb-21/13.jpg",
+        "img/fb/fb-21/14.jpg"
       ],
       "id": "fb-21",
       "category": "apartment",
@@ -710,7 +824,8 @@
       "description": "GRAND GARDEN 6-Р БАЙР\n#2өрөөбайр #ХУДАЛДАНА\n53мкв | 11/5 давхарт\nХарууц: Баруун харсан",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02faHAa8PzJ4gBBQnNVPGpWNi3snSdtHeXqbEn4nfSAdzFJPgpdnLaL16twX3jYY8zl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127684657434809"
     },
     {
       "images": [
@@ -718,7 +833,14 @@
         "img/fb/fb-22/2.jpg",
         "img/fb/fb-22/3.jpg",
         "img/fb/fb-22/4.jpg",
-        "img/fb/fb-22/5.jpg"
+        "img/fb/fb-22/5.jpg",
+        "img/fb/fb-22/6.jpg",
+        "img/fb/fb-22/7.jpg",
+        "img/fb/fb-22/8.jpg",
+        "img/fb/fb-22/9.jpg",
+        "img/fb/fb-22/10.jpg",
+        "img/fb/fb-22/11.jpg",
+        "img/fb/fb-22/12.jpg"
       ],
       "id": "fb-22",
       "category": "apartment",
@@ -734,7 +856,8 @@
       "description": "SKY TOWER\n#мастертай #3өрөөбайр #ХУДАЛДАНА\n92.95мкв | 10/5давхарт\nХарууц: Хойшоо харсан\nСуурьлагдсан модон тавилга бүгд үлдэнэ.",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0k5Hvwj7WXjVFe2GLt1MGfQnSNcJnv3oEbhwbCkKe4ihrQcqgs2rvkjLDUhHWoF4Yl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127681537434809"
     },
     {
       "images": [
@@ -755,7 +878,8 @@
       "description": "ОБЪЕКТ ХУДАЛДАХ БОЛОН ТҮРЭЭСЛҮҮЛНЭ\nНийт 10 өрөөтэй\n90м² өмчлөх газрын гэрчилгээтэй\nСаун – 5 өрөө\nКараоке – 3 өрөө\nГал тогоо – 1\nАгуулах – 1\nЖич: Засвар хийх шаардлагатай",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02QBVC9KSQsXNV4zVuMEdkag6PxVdAhqFN3yyxf6bWeCNQziZ4LyJ7GpGdbLyDfN1ml&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127621969434809"
     },
     {
       "images": [
@@ -763,7 +887,10 @@
         "img/fb/fb-24/2.jpg",
         "img/fb/fb-24/3.jpg",
         "img/fb/fb-24/4.jpg",
-        "img/fb/fb-24/5.jpg"
+        "img/fb/fb-24/5.jpg",
+        "img/fb/fb-24/6.jpg",
+        "img/fb/fb-24/7.jpg",
+        "img/fb/fb-24/8.jpg"
       ],
       "id": "fb-24",
       "category": "apartment",
@@ -779,7 +906,8 @@
       "description": "5-17-р байр #2өрөөбайр #ХУДАЛДАНА\n5/5 давхарт\nХарууц: Урагшаа болон хойшоо",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02rXmo7TCYUbjpsLfuCoe8hRzMzqnEHHBu8LWfy81HRa6ai4Ci9HhHPjFXGzKjrDFkl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127620595434809"
     },
     {
       "images": [
@@ -787,7 +915,8 @@
         "img/fb/fb-25/2.jpg",
         "img/fb/fb-25/3.jpg",
         "img/fb/fb-25/4.jpg",
-        "img/fb/fb-25/5.jpg"
+        "img/fb/fb-25/5.jpg",
+        "img/fb/fb-25/6.jpg"
       ],
       "id": "fb-25",
       "category": "apartment",
@@ -803,7 +932,8 @@
       "description": "ЗАЛУУС ХОТХОН #3өрөөбайр #ХУДАЛДАНА\nҮнэ: 200саяаас\n69.9мкв | 6/3 давхарт\nХарууц : Хойшоо болон зүүн.",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0557a6RtnSa3RYKvbEzhkZaq9TxYv54FqL7SXcMDerawbrW4bN5gNxz9XBvoaNQK1l&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127619635434809"
     },
     {
       "images": [
@@ -811,7 +941,9 @@
         "img/fb/fb-26/2.jpg",
         "img/fb/fb-26/3.jpg",
         "img/fb/fb-26/4.jpg",
-        "img/fb/fb-26/5.jpg"
+        "img/fb/fb-26/5.jpg",
+        "img/fb/fb-26/6.jpg",
+        "img/fb/fb-26/7.jpg"
       ],
       "id": "fb-26",
       "category": "apartment",
@@ -827,7 +959,8 @@
       "description": "5-12-р байр #2өрөөбайр #ХУДАЛДАНА\n5/4 давхарт\nХарууц: Урагшаа болон Хойшоо",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02YQWvEa7yzaU5az4onh7R2f3j7WVh4ZpNyLZQRmCkoJr5odRaD9UZjPh8XFgmE73Ql&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127616257434809"
     },
     {
       "images": [
@@ -835,7 +968,13 @@
         "img/fb/fb-27/2.jpg",
         "img/fb/fb-27/3.jpg",
         "img/fb/fb-27/4.jpg",
-        "img/fb/fb-27/5.jpg"
+        "img/fb/fb-27/5.jpg",
+        "img/fb/fb-27/6.jpg",
+        "img/fb/fb-27/7.jpg",
+        "img/fb/fb-27/8.jpg",
+        "img/fb/fb-27/9.jpg",
+        "img/fb/fb-27/10.jpg",
+        "img/fb/fb-27/11.jpg"
       ],
       "id": "fb-27",
       "category": "apartment",
@@ -851,7 +990,8 @@
       "description": "4МЕТР ӨНДӨР ТААЗТАЙ\nГРАНД ГАРДЕН 5-р байр\n#2өрөө #хямд #ХУДАЛДАНА\n48.4мкв | B1 Давхар\nХарууц: Урагшаа харсан\nТавилга үлдэнэ",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0yaDiGeop1aY5SVU2SVMxix1NUNscUv4qitzkrfSbHXsohAr9Vgvy7SsR7ojSZ6o1l&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127608115434809"
     },
     {
       "images": [
@@ -859,7 +999,9 @@
         "img/fb/fb-28/2.jpg",
         "img/fb/fb-28/3.jpg",
         "img/fb/fb-28/4.jpg",
-        "img/fb/fb-28/5.jpg"
+        "img/fb/fb-28/5.jpg",
+        "img/fb/fb-28/6.jpg",
+        "img/fb/fb-28/7.jpg"
       ],
       "id": "fb-28",
       "category": "apartment",
@@ -875,7 +1017,8 @@
       "description": "ГОК ГАРДЕН #2өрөөбайр #ХУДАЛДАНА\n52.97мкв | 2өрөө | 9/4давхарт\nХарууц: Хойшоо болон зүүн",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0325uS2Z5uBmGcgqeiuoUi14Z7Skx1n2546KmrHb8KDpGnCXPMrCqB3CPHUKidDhaol&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127606417434809"
     },
     {
       "images": [
@@ -883,7 +1026,17 @@
         "img/fb/fb-29/2.jpg",
         "img/fb/fb-29/3.jpg",
         "img/fb/fb-29/4.jpg",
-        "img/fb/fb-29/5.jpg"
+        "img/fb/fb-29/5.jpg",
+        "img/fb/fb-29/6.jpg",
+        "img/fb/fb-29/7.jpg",
+        "img/fb/fb-29/8.jpg",
+        "img/fb/fb-29/9.jpg",
+        "img/fb/fb-29/10.jpg",
+        "img/fb/fb-29/11.jpg",
+        "img/fb/fb-29/12.jpg",
+        "img/fb/fb-29/13.jpg",
+        "img/fb/fb-29/14.jpg",
+        "img/fb/fb-29/15.jpg"
       ],
       "id": "fb-29",
       "category": "apartment",
@@ -899,7 +1052,8 @@
       "description": "ОЮУ АПАРТМЕНТ #2өрөөбайр #ХУДАЛДАНА\n55.28мкв | 9/6 давхарт\nХарууц: Хойшоо болон зүүн.\nГал тогоо тавилга үлдэнэ.",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid09si5dSDriGqr1kyeyN8LLFPtMA6SM9Heun467AmMrV3ByVdMvi18svYcEqNxsrNtl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127601035434809"
     },
     {
       "images": [
@@ -907,7 +1061,9 @@
         "img/fb/fb-30/2.jpg",
         "img/fb/fb-30/3.jpg",
         "img/fb/fb-30/4.jpg",
-        "img/fb/fb-30/5.jpg"
+        "img/fb/fb-30/5.jpg",
+        "img/fb/fb-30/6.jpg",
+        "img/fb/fb-30/7.jpg"
       ],
       "id": "fb-30",
       "category": "apartment",
@@ -923,7 +1079,8 @@
       "description": "CENTRAL RESIDENCE-2\n#2өрөөбайр #ХУДАЛДАНА\n52.31мкв | 10/7 давхарт\nХарууц: Урагшаа харсан\nБартерт 1 өрөө байр сонирхоно",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0imB18U4bTR4L24BQJyJ4v1pHDEozf8UkwPeeuFpTbpyLrx4ZooH7KkEZkk3dSdBGl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127598935434809"
     },
     {
       "images": [
@@ -931,7 +1088,17 @@
         "img/fb/fb-31/2.jpg",
         "img/fb/fb-31/3.jpg",
         "img/fb/fb-31/4.jpg",
-        "img/fb/fb-31/5.jpg"
+        "img/fb/fb-31/5.jpg",
+        "img/fb/fb-31/6.jpg",
+        "img/fb/fb-31/7.jpg",
+        "img/fb/fb-31/8.jpg",
+        "img/fb/fb-31/9.jpg",
+        "img/fb/fb-31/10.jpg",
+        "img/fb/fb-31/11.jpg",
+        "img/fb/fb-31/12.jpg",
+        "img/fb/fb-31/13.jpg",
+        "img/fb/fb-31/14.jpg",
+        "img/fb/fb-31/15.jpg"
       ],
       "id": "fb-31",
       "category": "apartment",
@@ -947,7 +1114,8 @@
       "description": "ROYAL CASTLE\n#мастертай #3өрөөбайр #ХУДАЛДАНА\n77.4мкв | 12/4 давхарт\nХарууц: Хойшоо харсан\nГал тогоо болон үүдний тавилга үлдэнэ\nГраш\n18мкв 50саяд",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0vMoEPTqRSoMAxhkJc1TDzvmxYSkyRgUiAVyXnHXnLDBgRnVnYGjoiBUVCyU2UBj9l&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127540633434809"
     },
     {
       "images": [
@@ -968,7 +1136,8 @@
       "description": "БУЛГАН ЗАМ ДАГУУ #ГАЗАР #ХУДАЛДАНА\n9952-8028 | Үнэ: 120сая/60сая\n1400мкв газар нийлүүлж болон 700мкв таллаж зарна\nЭзэмших эрхийн гэрчилгээтэй\n#Бартер оролцуулах боломжтой\nБизнес эрхлэх болон хөрөнгө оруулалт хийхэд тохиромжтой байршил!",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0uWDWbTBjxzowD7AGMmfQykZ69PZYcJo2g6YP5C6Kyie7soPTbDhiJX4NQzzwvRsyl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127512763434809"
     },
     {
       "images": [
@@ -976,7 +1145,11 @@
         "img/fb/fb-33/2.jpg",
         "img/fb/fb-33/3.jpg",
         "img/fb/fb-33/4.jpg",
-        "img/fb/fb-33/5.jpg"
+        "img/fb/fb-33/5.jpg",
+        "img/fb/fb-33/6.jpg",
+        "img/fb/fb-33/7.jpg",
+        "img/fb/fb-33/8.jpg",
+        "img/fb/fb-33/9.jpg"
       ],
       "id": "fb-33",
       "category": "apartment",
@@ -992,7 +1165,8 @@
       "description": "ДЭНЖ 3 байрнд #4өрөөбайр #ХУДАЛДАНА\n9952-8028 | Үнэ: 175саяд\n5/3 давхарт\nХарууц: Баруун болон зүүн",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid02GD6DuzFYKRBVwTJc9xpH4gSk3t5MT1LKJbvT6MRmHz3RWGM8Qy48C1DSSHDjfiFXl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127510213434809"
     },
     {
       "images": [
@@ -1000,7 +1174,11 @@
         "img/fb/fb-34/2.jpg",
         "img/fb/fb-34/3.jpg",
         "img/fb/fb-34/4.jpg",
-        "img/fb/fb-34/5.jpg"
+        "img/fb/fb-34/5.jpg",
+        "img/fb/fb-34/6.jpg",
+        "img/fb/fb-34/7.jpg",
+        "img/fb/fb-34/8.jpg",
+        "img/fb/fb-34/9.jpg"
       ],
       "id": "fb-34",
       "category": "apartment",
@@ -1016,7 +1194,8 @@
       "description": "2-28 БАЙРНД #3өрөөбайр #ХУДАЛДАНА\n9952-8028. | Үнэ Хямд\n70.18мкв | 2 давхарт\nХарууц: Урагшаа харсан",
       "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid0hC6HsScZCM9YARRUdsitykaLApCMUFkx2wq7unAKbrS2mNErjPB5B1QFXMSMdU8Bl&id=61593044292253",
       "latitude": null,
-      "longitude": null
+      "longitude": null,
+      "fbPostId": "122127508923434809"
     }
   ]
 }
