@@ -72,8 +72,8 @@ def parse(text):
     # Rooms: "#3өрөө" hashtag first, then "2 өрөөг 3 өрөө болгосон" → 3, then the first "N өрөө".
     # Lines about barter ("1-2 өрөө ... сонирхоно") and counts above 6 (rooms of a building) are ignored.
     body = "\n".join(l for l in t.split("\n") if not re.search(r"сонирхоно|бартер", l, re.I))
-    rooms = (re.search(r"#(\d)\s*өрөө", body, re.I)
-             or re.search(r"\d\s*өрөөг\s*(\d)\s*өрөө", body, re.I)
+    rooms = (re.search(r"\d\s*өрөөг\s*#?\s*(\d)\s*өрөө", body, re.I)
+             or re.search(r"#(\d)\s*өрөө", body, re.I)
              or next((m for m in re.finditer(r"(?<!\d)(\d{1,2})\s*-?\s*өрөө", body, re.I) if 1 <= int(m.group(1)) <= 6), None))
     area = re.search(r"(\d+(?:[.,]\d+)?)\s*(?:мкв|м²|м2|мкв\.)", t, re.I)
     land = re.search(r"(\d+(?:[.,]\d+)?)\s*(га|мкв|м²)\s*газар", t, re.I)
@@ -87,7 +87,12 @@ def parse(text):
         price = next((m for m in re.finditer(price_re, t, re.I)
                       if not re.search(r"мкв|м²|граш|гараж", t[max(0, m.start() - 25):m.start()], re.I)), None)
 
-    if re.search(r"ОБЪЕКТ|ҮЙЛЧИЛГЭЭНИЙ|ОФФИС|АГУУЛАХ", up):
+    # Hashtags the owner sets win over words found in the text.
+    if re.search(r"#ГАЗАР\b", up) and not re.search(r"#(ХАШАА_?)?БАЙШИН|#\d\s*ӨРӨӨ", up):
+        cat = "land"
+    elif re.search(r"#(ХАШАА_?)?БАЙШИН", up):
+        cat = "house"
+    elif re.search(r"ОБЪЕКТ|ҮЙЛЧИЛГЭЭНИЙ|ОФФИС|АГУУЛАХ", up):
         cat = "object"
     elif re.search(r"ТҮРЭЭС", up):
         cat = "rent"
