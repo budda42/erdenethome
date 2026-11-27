@@ -2,6 +2,52 @@
   "_comment": "Facebook хуудаснаас (Отгон Багана) татсан зарууд. Засаад `npm run pages:data` ажиллуулна.",
   "listings": [
     {
+      "id": "fb-50853b8f",
+      "category": "apartment",
+      "title": "Уурхайчин хороолол 3 өрөө",
+      "location": null,
+      "rooms": 3,
+      "areaM2": 74.11,
+      "landM2": null,
+      "floor": "1",
+      "price": null,
+      "priceText": null,
+      "phone": "9952-8028",
+      "description": "УУРХАЙЧИН ХОРООЛОЛ #3өрөө #ХУДАЛДАНА\n74.11мкв | 1 давхарт\nТаазны өндөр 3.4 метр\nХарууц: Урагшаа болон зүүн\nтом өрөө, гал тогоо, үүдний тавилга үлдэнэ",
+      "images": [
+        "img/fb/fb-50853b8f/1.jpg",
+        "img/fb/fb-50853b8f/2.jpg",
+        "img/fb/fb-50853b8f/3.jpg",
+        "img/fb/fb-50853b8f/4.jpg",
+        "img/fb/fb-50853b8f/5.jpg"
+      ],
+      "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid027BKcbQP2tjby2b2CfNQSbpGkHN3wZL9mMx5ur6dJppcev1tx8Pz8doYJkGEeJWbdl&id=61593044292253",
+      "fbPostId": "122132598375434809",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "fb-6edb9751",
+      "category": "apartment",
+      "title": "6-6 байр 1 өрөө",
+      "location": null,
+      "rooms": 1,
+      "areaM2": null,
+      "landM2": null,
+      "floor": null,
+      "price": null,
+      "priceText": null,
+      "phone": "9952-8028",
+      "description": "6-6 байрнд #1өрөө #ХУДАЛДАНА\nХарууц: Зүүн болон урагшаа",
+      "images": [
+        "img/fb/fb-6edb9751/1.jpg"
+      ],
+      "source": "https://www.facebook.com/permalink.php?story_fbid=pfbid09bSQmQxwasRzTttJxeeVnduNTTcHvKLkSTgpGiZoNvFfn3GCVtdju4E6zWmYJNNbl&id=61593044292253",
+      "fbPostId": null,
+      "latitude": null,
+      "longitude": null
+    },
+    {
       "id": "fb-27a2f230",
       "category": "house",
       "title": "Чингэл баг, 4 өрөө хашаа байшин",
